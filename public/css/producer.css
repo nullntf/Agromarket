@@ -1,0 +1,16 @@
+/* Tema claro para productores */
+body {
+    background-color: #f9fafb; /* gray-50 */
+    color: #111827; /* gray-900 */
+}
+
+aside.sidebar {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb; /* gray-200 */
+    z-index: 40 !important;
+}
+
+/* Estilos adicionales para light theme */
+.hover\:bg-gray-200:hover {
+    background-color: #e5e7eb; /* gray-200 */
+}

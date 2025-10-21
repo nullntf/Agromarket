@@ -1,0 +1,14 @@
+/* Tema oscuro para administradores */
+body {
+    background-color: #1f2937; /* gray-800 */
+    color: #ffffff;
+}
+
+aside {
+    background-color: #374151; /* gray-700 */
+}
+
+/* Estilos adicionales para dark theme */
+.hover\:bg-gray-700:hover {
+    background-color: #4b5563; /* gray-600 */
+}
