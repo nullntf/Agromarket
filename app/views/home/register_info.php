@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Información de Registro - AgroMarket</title>
+    <title>Información de Registro - AgroCompra</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,13 +22,17 @@
             <div class="flex justify-between items-center h-16">
                 <a href="/" class="flex items-center space-x-2">
                     <i class="fas fa-seedling text-green-600 text-2xl"></i>
-                    <span class="text-xl font-bold text-gray-900">AgroMarket</span>
+                    <span class="text-xl font-bold text-gray-900">AgroCompra</span>
                 </a>
                 <div class="flex items-center space-x-3">
                     <a href="/" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
                         <i class="fas fa-arrow-left mr-1"></i>
                         Volver al Inicio
                     </a>
+                    <!-- Language Switcher -->
+                    <div class="hidden sm:block">
+                        <?php include __DIR__ . '/../partials/language_switcher.php'; ?>
+                    </div>
                     <a href="/login" class="inline-flex items-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors">
                         Iniciar Sesión
                     </a>
@@ -50,7 +54,7 @@
                     ¿Cómo Registrarse como Productor?
                 </h1>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Para formar parte de AgroMarket, es necesario contactar con la Unidad de Agricultura y Ganadería de la Alcaldía de Santa Ana
+                    Para formar parte de AgroCompra, es necesario contactar con la Unidad de Agricultura y Ganadería de la Alcaldía de Santa Ana
                 </p>
             </div>
 
@@ -225,7 +229,7 @@
             <div class="text-center">
                 <div class="flex items-center justify-center space-x-2 mb-4">
                     <i class="fas fa-seedling text-green-500 text-2xl"></i>
-                    <span class="text-xl font-bold text-white">AgroMarket</span>
+                    <span class="text-xl font-bold text-white">AgroCompra</span>
                 </div>
                 <p class="text-sm text-gray-400 mb-4">
                     Plataforma municipal para unir productores agrícolas con la comunidad de Santa Ana

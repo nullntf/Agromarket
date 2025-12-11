@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Productor - AgroMarket</title>
+    <title>Panel de Productor - AgroCompra</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="flex-1">
                         <h3 class="text-lg font-bold text-gray-900 mb-2">Guía de Inicio</h3>
-                        <p class="text-gray-700 mb-4">Sigue estos pasos para comenzar a vender tus productos en AgroMarket:</p>
+                        <p class="text-gray-700 mb-4">Sigue estos pasos para comenzar a vender tus productos en AgroCompra:</p>
                         <ul class="space-y-3">
                             <li class="flex items-start space-x-3">
                                 <i class="fas fa-check-circle text-green-600 mt-1"></i>

@@ -31,6 +31,13 @@ class UserController extends BaseController {
     }
 
     private function handleCreate() {
+        // Verificar CSRF token
+        if (!Session::verifyCsrfToken($_POST['csrf_token'] ?? '')) {
+            $error = 'Token CSRF inválido.';
+            $this->render('admin/users/create', ['error' => $error]);
+            return;
+        }
+
         $role = $_POST['roleSelect'] ?? 'producer';
         $name = trim($_POST['nameInput'] ?? '');
         $phone = trim($_POST['phoneInput'] ?? '');
@@ -41,12 +48,15 @@ class UserController extends BaseController {
             return;
         }
 
-        // Validar formato del teléfono (debe empezar con código de país)
-        if (!preg_match('/^[0-9]{8,15}$/', $phone)) {
-            $error = 'Formato de teléfono inválido. Use solo números con código de país (ej: 50370123456).';
+        // Validar y formatear número de teléfono (El Salvador: +503)
+        if (!preg_match('/^[0-9]{8}$/', $phone)) {
+            $error = 'Formato de teléfono inválido. Use 8 dígitos sin código de país (ej: 70123456).';
             $this->render('admin/users/create', ['error' => $error]);
             return;
         }
+
+        // Agregar código de país automáticamente
+        $phone = '+503' . $phone;
 
         require_once '../app/models/AccessTokenModel.php';
         require_once '../helpers/Session.php';
@@ -66,20 +76,29 @@ class UserController extends BaseController {
         }
 
         $tokenModel = new AccessTokenModel();
-        $token = $tokenModel->createToken($role, $currentUser['id']);
 
-        // Generar URL de registro
-        //$url = "http://agromarket.ddev.site/registro?{$role}_token={$token}";
-        $url = "https://boxing-caused-embassy-promotion.trycloudflare.com/registro?{$role}_token={$token}";
+        // Crear token y verificar que se generó correctamente
+        $token = $tokenModel->createToken($role, $currentUser['id']);
+        if (!$token) {
+            $error = 'Error al generar el token de invitación. Por favor, inténtelo de nuevo.';
+            $this->render('admin/users/create', ['error' => $error]);
+            return;
+        }
+
+        // Generar URL de registro dinámicamente
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+        $host = $_SERVER['HTTP_HOST'];
+        $url = "{$protocol}://{$host}/registro?{$role}_token={$token}";
 
         // Generar mensaje de WhatsApp
         $roleText = $role === 'producer' ? 'productor' : $role;
         $message = "¡Hola {$name}! \nUsa este enlace para registrarte como {$roleText} (válido por 15 minutos):\n{$url}";
 
-        $whatsAppUrl = "https://wa.me/{$phone}?text=" . urlencode($message);
+        $whatsAppUrl = "https://wa.me/{$phone}?text=" . rawurlencode($message);
 
-        // Redirigir a WhatsApp
-        header("Location: {$whatsAppUrl}");
+        // Usar JavaScript redirect en lugar de header redirect
+        // para evitar problemas con output buffering
+        echo "<script>window.location.href = '" . addslashes($whatsAppUrl) . "';</script>";
         exit;
     }
 

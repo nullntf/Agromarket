@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - AgroMarket</title>
+    <title>Iniciar Sesión - AgroCompra</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,13 +17,17 @@
     </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 via-white to-sky-50 min-h-screen flex items-center justify-center p-4">
-    
+    <!-- Language Switcher -->
+    <div class="absolute top-4 right-4">
+        <?php include __DIR__ . '/../partials/language_switcher.php'; ?>
+    </div>
+
     <div class="w-full max-w-md">
         <!-- Logo y Título -->
         <div class="text-center mb-8">
             <a href="/" class="inline-flex items-center space-x-2 mb-6">
                 <i class="fas fa-seedling text-green-600 text-2xl"></i>
-                <span class="text-2xl font-bold text-gray-900">AgroMarket</span>
+                <span class="text-2xl font-bold text-gray-900">AgroCompra</span>
             </a>
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Bienvenido de Nuevo</h1>
             <p class="text-gray-600">Ingresa a tu cuenta para continuar</p>

@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between p-6 border-b border-gray-200">
         <div class="flex items-center space-x-2">
             <i class="fas fa-seedling text-green-600 text-2xl"></i>
-            <h2 class="text-xl font-bold text-gray-900">AgroMarket</h2>
+            <h2 class="text-xl font-bold text-gray-900">AgroCompra</h2>
         </div>
         <button onclick="toggleSidebar()" class="lg:hidden text-gray-500 hover:text-gray-700 text-2xl focus:outline-none transition-colors">
             <i class="fas fa-times"></i>

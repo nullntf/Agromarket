@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php _e('store.title', 'Tienda - AgroMarket'); ?></title>
+    <title><?php _e('store.title', 'Tienda - AgroCompra'); ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,12 +21,16 @@
             <div class="flex justify-between items-center h-16">
                 <a href="/" class="flex items-center space-x-2">
                     <i class="fas fa-seedling text-green-600 text-2xl"></i>
-                    <span class="text-xl font-bold text-gray-900">AgroMarket</span>
+                    <span class="text-xl font-bold text-gray-900">AgroCompra</span>
                 </a>
                 <div class="flex items-center space-x-3">
                     <a href="/" class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
                         <i class="fas fa-home mr-2"></i><?php _e('home.nav.home', 'Inicio'); ?>
                     </a>
+                    <!-- Language Switcher -->
+                    <div class="hidden sm:block">
+                        <?php include __DIR__ . '/../partials/language_switcher.php'; ?>
+                    </div>
                     <a href="/login" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors">
                         <i class="fas fa-sign-in-alt mr-2"></i><?php _e('home.nav.login', 'Iniciar Sesión'); ?>
                     </a>

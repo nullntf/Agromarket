@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroMarket - <?php _e('home.title', 'Plataforma Agrícola Municipal de Santa Ana'); ?></title>
+    <title>AgroCompra - <?php _e('home.title', 'Plataforma Agrícola Municipal de Santa Ana'); ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-2">
                     <i class="fas fa-seedling text-green-600 text-2xl"></i>
-                    <span class="text-xl font-bold text-gray-900">AgroMarket</span>
+                    <span class="text-xl font-bold text-gray-900">AgroCompra</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#inicio" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"><?php _e('home.nav.home', 'Inicio'); ?></a>
@@ -253,7 +253,7 @@
                 <div class="md:col-span-4">
                     <div class="flex items-center space-x-2 mb-4">
                         <i class="fas fa-seedling text-green-500 text-2xl"></i>
-                        <span class="text-2xl font-bold text-white">AgroMarket</span>
+                        <span class="text-2xl font-bold text-white">AgroCompra</span>
                     </div>
                     <p class="text-sm text-gray-400 leading-relaxed mb-6">
                         <?php _e('home.footer.description', 'Plataforma municipal para unir productores agrícolas con la comunidad de Santa Ana.'); ?>

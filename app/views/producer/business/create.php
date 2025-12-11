@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Mi Negocio - AgroMarket</title>
+    <title>Crear Mi Negocio - AgroCompra</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +48,7 @@
                             <i class="fas fa-info-circle text-white text-xl"></i>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">Bienvenido a AgroMarket</h3>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Bienvenido a AgroCompra</h3>
                             <p class="text-gray-700 mb-3">
                                 Estás a punto de crear tu negocio en nuestra plataforma. Completa la siguiente información para comenzar a vender tus productos agrícolas.
                             </p>
@@ -201,7 +201,7 @@
                             </li>
                             <li class="flex items-start space-x-2">
                                 <i class="fas fa-check text-green-600 mt-1"></i>
-                                <span>Tus productos estarán visibles para todos los clientes de AgroMarket</span>
+                                <span>Tus productos estarán visibles para todos los clientes de AgroCompra</span>
                             </li>
                         </ul>
                     </div>
