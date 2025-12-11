@@ -2,6 +2,7 @@
 // Archivo de rutas centralizado para la aplicación
 
 $routes = [
+    'language/change/{lang}' => ['controller' => 'AdminController', 'action' => 'changeLanguage'],
     '' => ['controller' => 'HomeController', 'action' => 'index'],
     'home' => ['controller' => 'HomeController', 'action' => 'index'],
     'registro/informacion' => ['controller' => 'HomeController', 'action' => 'registerInfo'],

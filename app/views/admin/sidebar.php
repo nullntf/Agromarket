@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between p-6 border-b border-gray-800">
         <div class="flex items-center space-x-2">
             <i class="fas fa-shield-halved text-blue-500 text-2xl"></i>
-            <h2 class="text-xl font-bold text-gray-100">Admin Panel</h2>
+            <h2 class="text-xl font-bold text-gray-100"><?php _e('admin.dashboard.title'); ?></h2>
         </div>
         <button onclick="toggleSidebar()" class="lg:hidden text-gray-400 hover:text-gray-200 text-2xl focus:outline-none transition-colors">
             <i class="fas fa-times"></i>
@@ -64,20 +64,20 @@
             <li>
                 <a href="/admin" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
                     <i class="fas fa-chart-line text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="font-medium">Panel Principal</span>
+                    <span><?php _e('dashboard'); ?></span>
                 </a>
             </li>
             <li>
                 <a href="/admin/users" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
                     <i class="fas fa-users text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="font-medium">Usuarios</span>
+                    <span><?php _e('admin.users.title'); ?></span>
                 </a>
             </li>
             <?php if ($isMaster): ?>
             <li>
                 <a href="/admin/categories" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
                     <i class="fas fa-tags text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="font-medium">Categorías</span>
+                    <span><?php _e('admin.categories.title'); ?></span>
                 </a>
             </li>
             <?php endif; ?>
@@ -90,7 +90,7 @@
             <li>
                 <a href="/admin/settings" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
                     <i class="fas fa-cog text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="font-medium">Configuración</span>
+                    <span><?php _e('admin.settings.title'); ?></span>
                 </a>
             </li>
         </ul>

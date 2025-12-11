@@ -80,7 +80,6 @@ class TiendaController extends BaseController {
             exit;
         }
         
-        
         $productModel = new ProductModel();
         $product = $productModel->getById($id);
         
@@ -96,10 +95,14 @@ class TiendaController extends BaseController {
         $businessModel = new BusinessModel();
         $business = $businessModel->getById($product['business_id']);
         
+        // Obtener el idioma actual
+        $lang = $_SESSION['lang'] ?? 'es';
+        
         $this->render('tienda/product', [
             'product' => $product,
             'photos' => $photos,
-            'business' => $business
+            'business' => $business,
+            'lang' => $lang
         ]);
     }
     
@@ -108,7 +111,6 @@ class TiendaController extends BaseController {
             header('Location: /tienda');
             exit;
         }
-        
         
         $businessModel = new BusinessModel();
         $business = $businessModel->getById($id);
@@ -134,9 +136,13 @@ class TiendaController extends BaseController {
             $product['main_photo'] = $mainPhoto ? $mainPhoto['photo'] : null;
         }
         
+        // Obtener el idioma actual
+        $lang = $_SESSION['lang'] ?? 'es';
+        
         $this->render('tienda/business', [
             'business' => $business,
-            'products' => $products
+            'products' => $products,
+            'lang' => $lang
         ]);
     }
 }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?= $lang ?? 'es' ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($product['name']) ?> - AgroMarket</title>
+    <title><?= htmlspecialchars($product['name']) ?> - <?= _e('product.title', 'Detalles del Producto') ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,13 +25,13 @@
                 </a>
                 <div class="flex items-center space-x-3">
                     <a href="/tienda" class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-store mr-2"></i>Tienda
+                        <i class="fas fa-store mr-2"></i><?= _e('store.title', 'Tienda') ?>
                     </a>
                     <a href="/" class="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-home mr-2"></i>Inicio
+                        <i class="fas fa-home mr-2"></i><?= _e('breadcrumb_home', 'Inicio') ?>
                     </a>
                     <a href="/login" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión
+                        <i class="fas fa-sign-in-alt mr-2"></i><?= _e('login', 'Iniciar Sesión') ?>
                     </a>
                 </div>
             </div>
@@ -42,9 +42,9 @@
     <div class="bg-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <nav class="flex items-center space-x-2 text-sm text-gray-600">
-                <a href="/" class="hover:text-blue-600 transition-colors">Inicio</a>
+                <a href="/" class="hover:text-blue-600 transition-colors"><?= _e('breadcrumb_home', 'Inicio') ?></a>
                 <i class="fas fa-chevron-right text-xs"></i>
-                <a href="/tienda" class="hover:text-blue-600 transition-colors">Tienda</a>
+                <a href="/tienda" class="hover:text-blue-600 transition-colors"><?= _e('store.title', 'Tienda') ?></a>
                 <i class="fas fa-chevron-right text-xs"></i>
                 <span class="text-gray-900 font-medium"><?= htmlspecialchars($product['name']) ?></span>
             </nav>
@@ -92,12 +92,12 @@
                     
                     <div class="flex items-baseline space-x-3 mb-6">
                         <p class="text-4xl md:text-5xl font-bold text-blue-600">
-                            $<?= number_format($product['price'], 2) ?>
+                            <?= _e('product.price', 'Precio') ?>: $<?= number_format($product['price'], 2) ?>
                         </p>
                     </div>
                     
                     <div class="border-t border-gray-200 pt-6 mb-6">
-                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Categoría</h3>
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2"><?= _e('product.category', 'Categoría') ?></h3>
                         <p class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">
                             <i class="fas fa-tag mr-2"></i>
                             <?= htmlspecialchars($product['category_name']) ?>
@@ -108,7 +108,7 @@
                     <div class="border-t border-gray-200 pt-6 mb-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                             <i class="fas fa-align-left text-blue-600 mr-2"></i>
-                            Descripción
+                            <?= _e('product.description', 'Descripción') ?>
                         </h3>
                         <p class="text-gray-600 leading-relaxed whitespace-pre-line"><?= htmlspecialchars($product['description']) ?></p>
                     </div>
@@ -118,7 +118,7 @@
                     <button onclick="contactWhatsApp()" 
                             class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-lg transition-all hover:shadow-lg font-semibold text-lg inline-flex items-center justify-center space-x-2">
                         <i class="fab fa-whatsapp text-2xl"></i>
-                        <span>Contactar por WhatsApp</span>
+                        <span><?= _e('product.contact_whatsapp', 'Contactar por WhatsApp') ?></span>
                     </button>
                 </div>
                 
@@ -126,13 +126,13 @@
                 <div class="bg-gradient-to-br from-blue-50 to-sky-50 rounded-xl shadow-sm border border-blue-200 p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                         <i class="fas fa-store text-blue-600 mr-2"></i>
-                        Información del Negocio
+                        <?= _e('product.business_info', 'Información del Negocio') ?>
                     </h3>
                     <div class="space-y-3">
                         <div class="flex items-start">
                             <i class="fas fa-building text-blue-600 w-5 mt-1 mr-3"></i>
                             <div>
-                                <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Negocio</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-wide mb-1"><?= _e('product.business', 'Negocio') ?></p>
                                 <a href="/tienda/business/<?= $business['id'] ?>" class="text-gray-900 font-medium hover:text-blue-600 transition-colors">
                                     <?= htmlspecialchars($business['name']) ?>
                                 </a>
@@ -141,14 +141,14 @@
                         <div class="flex items-start">
                             <i class="fas fa-user text-blue-600 w-5 mt-1 mr-3"></i>
                             <div>
-                                <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Productor</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-wide mb-1"><?= _e('product.producer', 'Productor') ?></p>
                                 <p class="text-gray-900 font-medium"><?= htmlspecialchars($product['producer_name'] . ' ' . $product['producer_lastname']) ?></p>
                             </div>
                         </div>
                         <div class="flex items-start">
                             <i class="fas fa-phone text-blue-600 w-5 mt-1 mr-3"></i>
                             <div>
-                                <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Teléfono</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-wide mb-1"><?= _e('product.phone', 'Teléfono') ?></p>
                                 <p class="text-gray-900 font-medium"><?= htmlspecialchars($business['phone']) ?></p>
                             </div>
                         </div>
@@ -179,7 +179,12 @@ function contactWhatsApp() {
     const businessName = '<?= htmlspecialchars($business['name']) ?>';
     const productName = '<?= htmlspecialchars($product['name']) ?>';
     const productUrl = window.location.href;
-    const message = `Hola ${producerName}, me interesa el producto "${productName}" de su negocio ${businessName}. Puede ver el producto aquí: ${productUrl}`;
+    const message = `<?= _e('whatsapp.product_message', 'Hola {producer}, me interesa el producto "{product}" de su negocio {business}. Puede ver el producto aquí: {url}', [
+        'producer' => '${producerName}',
+        'product' => '${productName}',
+        'business' => '${businessName}',
+        'url' => '${productUrl}'
+    ]) ?>`;
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${cleanPhone}?text=${encodedMessage}`, '_blank');
 }
