@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?php echo isset($_SESSION['language']) ? $_SESSION['language'] : 'es'; ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda - AgroMarket</title>
+    <title><?php _e('store.title', 'Tienda - AgroMarket'); ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,10 +25,10 @@
                 </a>
                 <div class="flex items-center space-x-3">
                     <a href="/" class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-home mr-2"></i>Inicio
+                        <i class="fas fa-home mr-2"></i><?php _e('home.nav.home', 'Inicio'); ?>
                     </a>
                     <a href="/login" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión
+                        <i class="fas fa-sign-in-alt mr-2"></i><?php _e('home.nav.login', 'Iniciar Sesión'); ?>
                     </a>
                 </div>
             </div>
@@ -38,8 +38,8 @@
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-blue-600 to-sky-600 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-3xl md:text-4xl font-bold mb-2">Catálogo de Productos</h1>
-            <p class="text-blue-50">Descubre productos agrícolas frescos de toda El Salvador</p>
+            <h1 class="text-3xl md:text-4xl font-bold mb-2"><?php _e('store.catalog', 'Catálogo de Productos'); ?></h1>
+            <p class="text-blue-50"><?php _e('store.discover', 'Descubre productos agrícolas frescos de toda El Salvador'); ?></p>
         </div>
     </div>
 
@@ -56,35 +56,30 @@
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-lg font-bold text-gray-900 flex items-center">
                     <i class="fas fa-filter text-blue-600 mr-2"></i>
-                    Filtros de Búsqueda
+                    <?php _e('store.filters.title', 'Filtros de Búsqueda'); ?>
                 </h2>
-                <button type="button" onclick="document.getElementById('filterForm').classList.toggle('hidden')" class="md:hidden text-gray-600 hover:text-blue-600">
-                    <i class="fas fa-chevron-down"></i>
+                <button type="button" onclick="resetFilters()" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-times mr-1"></i> <?php _e('store.filters.clear', 'Limpiar Filtros'); ?>
                 </button>
             </div>
             
             <form id="filterForm" method="GET" action="/tienda" class="space-y-5">
                 <div>
                     <label for="search" class="block text-sm font-semibold text-gray-700 mb-2">
-                        <i class="fas fa-search text-gray-400 mr-2"></i>Búsqueda General
+                        <i class="fas fa-search text-gray-400 mr-2"></i><?php _e('store.filters.search', 'Búsqueda General'); ?>
                     </label>
-                    <input type="text" 
-                           id="search" 
-                           name="search" 
-                           value="<?= htmlspecialchars($filters['search'] ?? '') ?>"
-                           placeholder="Buscar por nombre, negocio o productor..."
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                    <input type="text" id="search" name="search"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="<?php _e('store.filters.search', 'Buscar productos...'); ?>">
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                     <div>
                         <label for="category_id" class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-tag text-gray-400 mr-2"></i>Categoría
+                            <i class="fas fa-tag text-gray-400 mr-2"></i><?php _e('store.filters.category', 'Categoría'); ?>
                         </label>
-                        <select id="category_id" 
-                                name="category_id"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                            <option value="">Todas las categorías</option>
+                        <select id="category_id" name="category_id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value=""><?php _e('store.filters.category', 'Todas las categorías'); ?></option>
                             <?php foreach ($categories as $category): ?>
                                 <option value="<?= $category['id'] ?>" <?= (isset($filters['category_id']) && $filters['category_id'] == $category['id']) ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($category['name']) ?>
@@ -95,13 +90,12 @@
                     
                     <div>
                         <label for="department_id" class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-map-marked-alt text-gray-400 mr-2"></i>Departamento
+                            <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i><?php _e('store.filters.department', 'Departamento'); ?>
                         </label>
-                        <select id="department_id" 
-                                name="department_id"
+                        <select id="department_id" name="department_id" 
                                 onchange="loadMunicipalities(this.value)"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                            <option value="">Todos los departamentos</option>
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value=""><?php _e('store.filters.department', 'Todos los departamentos'); ?></option>
                             <?php foreach ($departments as $department): ?>
                                 <option value="<?= $department['id'] ?>" <?= (isset($filters['department_id']) && $filters['department_id'] == $department['id']) ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($department['name']) ?>
@@ -112,12 +106,11 @@
                     
                     <div>
                         <label for="municipality_id" class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>Municipio
+                            <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i><?php _e('store.filters.municipality', 'Municipio'); ?>
                         </label>
-                        <select id="municipality_id" 
-                                name="municipality_id"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                            <option value="">Todos los municipios</option>
+                        <select id="municipality_id" name="municipality_id" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value=""><?php _e('store.filters.municipality', 'Todos los municipios'); ?></option>
                             <?php foreach ($municipalities as $municipality): ?>
                                 <option value="<?= $municipality['id'] ?>" <?= (isset($filters['municipality_id']) && $filters['municipality_id'] == $municipality['id']) ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($municipality['name']) ?>
@@ -125,39 +118,19 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-dollar-sign text-gray-400 mr-2"></i>Rango de Precio
-                        </label>
-                        <div class="flex space-x-2">
-                            <input type="number" 
-                                   name="min_price" 
-                                   value="<?= htmlspecialchars($filters['min_price'] ?? '') ?>"
-                                   placeholder="Mín"
-                                   step="0.01"
-                                   class="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                            <input type="number" 
-                                   name="max_price" 
-                                   value="<?= htmlspecialchars($filters['max_price'] ?? '') ?>"
-                                   placeholder="Máx"
-                                   step="0.01"
-                                   class="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="flex flex-col sm:flex-row gap-3">
                     <button type="submit" 
                             class="flex-1 sm:flex-none inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all hover:shadow-lg">
                         <i class="fas fa-search mr-2"></i>
-                        Buscar
+                        <?php _e('store.filters.search_button', 'Buscar'); ?>
                     </button>
-                    <a href="/tienda" 
-                       class="flex-1 sm:flex-none inline-flex items-center justify-center px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-lg transition-all">
-                        <i class="fas fa-times mr-2"></i>
-                        Limpiar
-                    </a>
+                    <button type="reset" 
+                            class="flex-1 sm:flex-none inline-flex items-center justify-center px-6 py-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-all">
+                        <i class="fas fa-undo mr-2"></i>
+                        <?php _e('store.filters.reset_button', 'Reiniciar'); ?>
+                    </button>
                 </div>
             </form>
         </div>
@@ -165,11 +138,13 @@
         <!-- Resultados -->
         <div class="flex items-center justify-between mb-6">
             <h2 class="text-xl font-bold text-gray-900">
-                Productos Disponibles
-                <span class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full ml-2">
-                    <?= count($products) ?>
-                </span>
+                <?php _e('store.results.products', 'Productos') ?>
             </h2>
+            <?php if (count($products) > 0): ?>
+            <span class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full ml-2">
+                <?= count($products) ?>
+            </span>
+            <?php endif; ?>
         </div>
         
         <?php if (empty($products)): ?>
@@ -251,7 +226,7 @@
 // Cargar municipios dinámicamente
 async function loadMunicipalities(departmentId) {
     const municipalitySelect = document.getElementById('municipality_id');
-    municipalitySelect.innerHTML = '<option value="">Cargando...</option>';
+    municipalitySelect.innerHTML = '<option value=""><?php _e('store.filters.loading', 'Cargando...') ?>';
     
     if (!departmentId) {
         municipalitySelect.innerHTML = '<option value="">Todos los municipios</option>';

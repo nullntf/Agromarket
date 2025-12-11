@@ -9,8 +9,29 @@ require_once '../app/models/BusinessModel.php';
 require_once '../app/models/ProductModel.php';
 
 class AdminController extends BaseController {
+    /**
+     * Change the application language
+     */
+    public function changeLanguage($language) {
+        if (in_array($language, ['es', 'en'])) {
+            $_SESSION['language'] = $language;
+            
+            // Redirect back to the previous page or dashboard
+            $redirect = $_SERVER['HTTP_REFERER'] ?? '/admin';
+            header('Location: ' . $redirect);
+            exit();
+        }
+        
+        // If language is not valid, redirect to dashboard
+        header('Location: /admin');
+        exit();
+    }
+    
     public function index() {
         AuthMiddleware::checkAdminAccess();
+        
+        // Obtener el usuario actual de la sesión
+        $currentUser = $_SESSION['user'] ?? null;
         
         // Obtener estadísticas del dashboard
         $userModel = new UserModel();
@@ -26,6 +47,9 @@ class AdminController extends BaseController {
         
         // Actividad reciente (últimos 10 usuarios registrados)
         $recentUsers = $this->getRecentUsers($userModel);
+        
+        // Forzar la recarga del archivo de idioma
+        $this->lang->loadLanguageFile('es');
         
         // Renderizar la vista principal de administradores
         $this->render('admin/index', [

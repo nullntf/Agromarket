@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?= $lang ?? 'es' ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($business['name']) ?> - AgroMarket</title>
+    <title><?= htmlspecialchars($business['name']) ?> - <?= _e('business.title', 'Perfil del Negocio') ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,13 +25,13 @@
                 </a>
                 <div class="flex items-center space-x-3">
                     <a href="/tienda" class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-store mr-2"></i>Tienda
+                        <i class="fas fa-store mr-2"></i><?= _e('store.title', 'Tienda') ?>
                     </a>
                     <a href="/" class="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-home mr-2"></i>Inicio
+                        <i class="fas fa-home mr-2"></i><?= _e('breadcrumb_home', 'Inicio') ?>
                     </a>
                     <a href="/login" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión
+                        <i class="fas fa-sign-in-alt mr-2"></i><?= _e('login', 'Iniciar Sesión') ?>
                     </a>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 <div class="mb-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                         <i class="fas fa-map-marked-alt text-blue-600 mr-2"></i>
-                        Dirección
+                        <?= _e('business.address', 'Dirección') ?>
                     </h3>
                     <p class="text-gray-600"><?= htmlspecialchars($business['address']) ?></p>
                 </div>
@@ -94,7 +94,7 @@
                 <div class="border-t border-gray-200 pt-6 mb-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                         <i class="fas fa-info-circle text-blue-600 mr-2"></i>
-                        Descripción
+                        <?= _e('business.description', 'Descripción') ?>
                     </h3>
                     <p class="text-gray-600 leading-relaxed whitespace-pre-line"><?= htmlspecialchars($business['description']) ?></p>
                 </div>
@@ -105,7 +105,7 @@
                     <button onclick="contactWhatsApp()" 
                             class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg transition-all hover:shadow-lg font-semibold inline-flex items-center justify-center space-x-2">
                         <i class="fab fa-whatsapp text-xl"></i>
-                        <span>Contactar por WhatsApp</span>
+                        <span><?= _e('business.contact_whatsapp', 'Contactar por WhatsApp') ?></span>
                     </button>
                 </div>
             </div>
@@ -114,7 +114,7 @@
         <!-- Productos del Negocio -->
         <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8 mb-8">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-                Productos Disponibles
+                <?= _e('business.available_products', 'Productos Disponibles') ?>
                 <span class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 text-base font-semibold rounded-full ml-2">
                     <?= count($products) ?>
                 </span>
@@ -123,8 +123,8 @@
             <?php if (empty($products)): ?>
                 <div class="text-center py-16">
                     <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
-                    <h3 class="text-xl font-bold text-gray-700 mb-2">No hay productos disponibles</h3>
-                    <p class="text-gray-500">Este negocio no tiene productos publicados actualmente</p>
+                    <h3 class="text-xl font-bold text-gray-700 mb-2"><?= _e('business.no_products', 'No hay productos disponibles') ?></h3>
+                    <p class="text-gray-500"><?= _e('business.no_products_message', 'Este negocio no tiene productos publicados actualmente') ?></p>
                 </div>
             <?php else: ?>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -153,11 +153,11 @@
                             <div class="space-y-2">
                                 <a href="/tienda/product/<?= $product['id'] ?>" 
                                    class="block w-full text-center bg-gray-900 hover:bg-gray-800 text-white py-2.5 px-4 rounded-lg transition-all font-medium">
-                                    <i class="fas fa-eye mr-2"></i>Ver Detalles
+                                    <i class="fas fa-eye mr-2"></i><?= _e('business.view_details', 'Ver Detalles') ?>
                                 </a>
                                 <button onclick="contactProductWhatsApp('<?= htmlspecialchars($business['phone']) ?>', '<?= htmlspecialchars($business['producer_name']) ?>', '<?= htmlspecialchars($business['name']) ?>', '<?= htmlspecialchars($product['name']) ?>', '<?= $product['id'] ?>')" 
                                         class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg transition-all font-medium">
-                                    <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                                    <i class="fab fa-whatsapp mr-2"></i><?= _e('business.contact_seller', 'Contactar Vendedor') ?>
                                 </button>
                             </div>
                         </div>
@@ -176,7 +176,11 @@ function contactWhatsApp() {
     const producerName = '<?= htmlspecialchars($business['producer_name'] . ' ' . $business['producer_lastname']) ?>';
     const businessName = '<?= htmlspecialchars($business['name']) ?>';
     const businessUrl = window.location.href;
-    const message = `Hola ${producerName}, me interesa conocer más sobre su negocio ${businessName}. Puede ver su perfil aquí: ${businessUrl}`;
+    const message = `<?= _e('whatsapp.business_message', 'Hola {producer}, me interesa conocer más sobre su negocio {business}. Puede ver su perfil aquí: {url}', [
+        'producer' => $business['producer_name'] . ' ' . $business['producer_lastname'],
+        'business' => $business['name'],
+        'url' => '${businessUrl}'
+    ]) ?>`;
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${cleanPhone}?text=${encodedMessage}`, '_blank');
 }
@@ -185,7 +189,12 @@ function contactWhatsApp() {
 function contactProductWhatsApp(phone, producerName, businessName, productName, productId) {
     const cleanPhone = phone.replace(/\D/g, '');
     const productUrl = window.location.origin + '/tienda/product/' + productId;
-    const message = `Hola ${producerName}, me interesa el producto "${productName}" de su negocio ${businessName}. Puede ver el producto aquí: ${productUrl}`;
+    const message = `<?= _e('whatsapp.product_message', 'Hola {producer}, me interesa el producto "{product}" de su negocio {business}. Puede ver el producto aquí: {url}', [
+        'producer' => '${producerName}',
+        'product' => '${productName}',
+        'business' => '${businessName}',
+        'url' => '${productUrl}'
+    ]) ?>`;
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${cleanPhone}?text=${encodedMessage}`, '_blank');
 }
