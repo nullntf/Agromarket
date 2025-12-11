@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroMarket - Generar Token de Invitación</title>
+    <title>AgroCompra - Generar Token de Invitación</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,11 +102,11 @@
                             </label>
                             <input type="tel" name="phoneInput" id="phoneInput" required
                                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" 
-                                   placeholder="Ej: 50370123456"
+                                   placeholder="Ej: 70123456"
                                    autocomplete="tel">
                             <p class="mt-2 text-xs text-gray-500 flex items-center space-x-1">
                                 <i class="fas fa-info-circle"></i>
-                                <span>Solo números, sin espacios ni símbolos (+)</span>
+                                <span>8 dígitos sin código de país (ej: 70123456). Se agregará +503 automáticamente.</span>
                             </p>
                         </div>
                 

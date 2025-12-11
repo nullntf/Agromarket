@@ -56,6 +56,13 @@ class LoginController extends BaseController {
             return;
         }
 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = 'Formato de email inválido.';
+            $csrfToken = Session::getCsrfToken();
+            $this->render('login/index', ['error' => $error, 'csrf_token' => $csrfToken]);
+            return;
+        }
+
         // Verificar si este email está bloqueado por rate limiting
         $lockStatus = RateLimiter::isLocked($email);
         if ($lockStatus['locked']) {

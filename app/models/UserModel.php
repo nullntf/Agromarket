@@ -44,7 +44,7 @@ class UserModel extends BaseModel {
     // Validar contraseña
     public function validatePassword($password) {
         // Mínimo 8 caracteres, al menos una mayúscula, una minúscula y un número
-        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/', $password);
+        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/', $password);
     }
 
     // Hash de contraseña

@@ -22,7 +22,7 @@ return [
     
     // Home Page
     'store' => [
-        'title' => 'Tienda - AgroMarket',
+        'title' => 'Tienda - AgroCompra',
         'catalog' => 'Catálogo de Productos',
         'discover' => 'Descubre productos agrícolas frescos de toda El Salvador',
         'filters' => [
