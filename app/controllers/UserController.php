@@ -98,7 +98,7 @@ class UserController extends BaseController {
 
         // Usar JavaScript redirect en lugar de header redirect
         // para evitar problemas con output buffering
-        echo "<script>window.location.href = '" . addslashes($whatsAppUrl) . "';</script>";
+        echo "<script>window.location.href = " . json_encode($whatsAppUrl) . ";</script>";
         exit;
     }
 

@@ -21,7 +21,7 @@ class SecurityHeaders {
         // Content Security Policy (CSP) - Permite recursos del mismo origen y CDNs específicos
         $csp = "Content-Security-Policy: ";
         $csp .= "default-src 'self'; ";
-        $csp .= "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; ";
+        $csp .= "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; ";
         $csp .= "style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; ";
         $csp .= "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com data:; ";
         $csp .= "img-src 'self' data: blob: https:; ";
