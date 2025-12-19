@@ -164,6 +164,23 @@ class ProductModel extends BaseModel {
     }
 
     /**
+     * Contar productos activos por productor
+     * @param int $producerId
+     * @return int
+     */
+    public function countActiveByProducer($producerId) {
+        $stmt = $this->db->prepare("
+            SELECT COUNT(*) as total
+            FROM {$this->table} p
+            INNER JOIN businesses b ON p.business_id = b.id
+            WHERE b.producer_id = ? AND p.status = 'active' AND b.status = 'active'
+        ");
+        $stmt->execute([$producerId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return (int) $result['total'];
+    }
+
+    /**
      * Obtener productos públicos con filtros (solo activos)
      * @param array $filters
      * @return array

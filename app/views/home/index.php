@@ -470,7 +470,8 @@
 
     <!-- Mid bar -->
     <div class="border-t border-white/10 pt-5">
-      <div class="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
+        <!-- Enlaces -->
         <div class="flex flex-wrap justify-center gap-5 text-sm">
           <a href="/tienda" class="hover:text-white transition-colors"><?php _e('home.footer.links.store', 'Tienda'); ?></a>
           <a href="#como-funciona" class="hover:text-white transition-colors"><?php _e('home.footer.links.how_it_works', 'Cómo Funciona'); ?></a>
@@ -478,28 +479,21 @@
           <a href="/login" class="hover:text-white transition-colors"><?php _e('home.footer.links.login', 'Iniciar Sesión'); ?></a>
         </div>
 
-        <div class="flex items-center space-x-3">
-          <span class="text-sm text-gray-400"><?php _e('home.footer.follow_us', 'Síguenos:'); ?></span>
-
-          <a href="https://www.facebook.com/SantaAnaAlcaldia" target="_blank"
-             class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-
-          <a href="https://www.instagram.com/alcaldia_sa/" target="_blank"
-             class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-            <i class="fab fa-instagram"></i>
-          </a>
-
-          <a href="https://x.com/alcaldia_SA" target="_blank"
-             class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-            <i class="fab fa-x-twitter"></i>
-          </a>
-
-          <a href="https://www.tiktok.com/@alcaldiasa" target="_blank"
-             class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-            <i class="fab fa-tiktok"></i>
-          </a>
+        <!-- Desarrolladores -->
+        <div class="w-full md:w-auto">
+          <div class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 md:text-right">
+            <div class="flex items-center md:justify-end mb-2">
+              <i class="fas fa-code text-[#9fb34d] mr-2"></i>
+              <span class="font-semibold tracking-wide uppercase text-xs">
+                <?php _e('home.footer.developed_by', 'Equipo de desarrollo'); ?>
+              </span>
+            </div>
+            <div class="space-y-1 leading-tight">
+              <p>Joshua Jhat Galán Franco</p>
+              <p>Neftali Galán Franco</p>
+              <p>Rodrigo Salomón Cristales Escobar</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -513,6 +507,7 @@
 
   </div>
 </footer>
+
 
 
 <!-- Scripts (tu language switcher intacto) -->

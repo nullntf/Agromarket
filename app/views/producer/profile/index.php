@@ -62,8 +62,8 @@
                         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between -mt-16 mb-6">
                             <div class="flex flex-col sm:flex-row items-center sm:items-end space-y-4 sm:space-y-0 sm:space-x-4">
                                 <?php if (!empty($user['profile_photo'])): ?>
-                                    <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>" 
-                                         alt="Foto de perfil" 
+                                    <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
+                                         alt="Foto de perfil"
                                          class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-lg">
                                 <?php else: ?>
                                     <div class="w-32 h-32 rounded-full border-4 border-white bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-lg">

@@ -40,8 +40,8 @@
                         <!-- Profile Photo -->
                         <div class="flex-shrink-0">
                             <?php if (!empty($user['profile_photo'])): ?>
-                                <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>" 
-                                     alt="Foto de perfil" 
+                                <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
+                                     alt="Foto de perfil"
                                      class="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-gray-800 shadow-lg">
                             <?php else: ?>
                                 <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-3xl sm:text-4xl font-bold border-4 border-gray-800 shadow-lg">
