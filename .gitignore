@@ -23,10 +23,7 @@ composer.phar
 config/database.php
 
 # Uploads and cache
-public/uploads/
-cache/
-temp/
-tmp/
+
 
 # Environment files
 .env
