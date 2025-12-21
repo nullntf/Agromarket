@@ -10,7 +10,7 @@ class CategoryController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         // Solo master puede ver categorías
@@ -37,7 +37,7 @@ class CategoryController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         // Solo master puede crear categorías
@@ -56,7 +56,7 @@ class CategoryController extends BaseController {
 
     private function handleCreate() {
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
 
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -94,7 +94,7 @@ class CategoryController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         // Solo master puede editar categorías
@@ -127,7 +127,7 @@ class CategoryController extends BaseController {
 
     private function handleEdit($id) {
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
 
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -165,7 +165,7 @@ class CategoryController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         // Solo master puede eliminar categorías

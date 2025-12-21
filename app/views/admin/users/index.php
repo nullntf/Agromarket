@@ -62,7 +62,7 @@
                     <?php if (isset($users) && is_array($users)): ?>
                         <?php 
                         require_once '../helpers/Session.php';
-                        Session::start();
+                        // Session::start();
                         $currentUser = Session::getCurrentUser();
                         $isMaster = $currentUser['rol'] === 'master';
                         

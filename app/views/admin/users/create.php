@@ -72,7 +72,7 @@
                                 <option value="producer" selected>Producer</option>
                                 <?php 
                                 require_once '../helpers/Session.php';
-                                Session::start();
+                                // Session::start();
                                 $currentUser = Session::getCurrentUser();
                                 if ($currentUser['rol'] === 'master'): 
                                 ?>

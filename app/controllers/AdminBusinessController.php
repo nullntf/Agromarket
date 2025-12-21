@@ -14,7 +14,7 @@ class AdminBusinessController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $businessModel = new BusinessModel();
@@ -35,7 +35,7 @@ class AdminBusinessController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $businessModel = new BusinessModel();
@@ -73,7 +73,7 @@ class AdminBusinessController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -98,7 +98,7 @@ class AdminBusinessController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';

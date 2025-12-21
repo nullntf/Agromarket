@@ -74,7 +74,7 @@ class ProductController extends BaseController {
 
     private function handleCreate($businessId) {
         
-        Session::start();
+        // Session::start();
         
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -181,7 +181,7 @@ class ProductController extends BaseController {
 
     private function handleEdit($id) {
         
-        Session::start();
+        // Session::start();
         
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';

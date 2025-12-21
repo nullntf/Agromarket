@@ -16,13 +16,72 @@
     <style>
         body { font-family: 'Sora', sans-serif; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Geist', sans-serif; }
+        
+        /* Hamburger Icon */
+        .hamburger-icon {
+            width: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .hamburger-line {
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .hamburger-icon.active .hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        
+        .hamburger-icon.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-icon.active .hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        
+        .mobile-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .mobile-menu-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-link i {
+            width: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
 
 <!-- NAVBAR -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-[#6b7a2a] text-white">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-[#6b7a2a] text-white shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <!-- Logo -->
@@ -31,7 +90,7 @@
                 <span class="text-lg sm:text-xl font-bold tracking-wide">AgroCompra</span>
             </div>
 
-            <!-- Menu -->
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-10">
                 <a href="#inicio" class="text-sm font-semibold hover:opacity-90 transition"><?php _e('home.nav.home', 'Inicio'); ?></a>
                 <a href="#como-funciona" class="text-sm font-semibold hover:opacity-90 transition"><?php _e('home.nav.how_it_works', 'Como funciona'); ?></a>
@@ -39,8 +98,8 @@
                 <a href="/tienda" class="text-sm font-semibold hover:opacity-90 transition"><?php _e('home.nav.store', 'Tienda'); ?></a>
             </div>
 
-            <!-- Actions -->
-            <div class="flex items-center gap-3">
+            <!-- Desktop Actions -->
+            <div class="hidden md:flex items-center gap-3">
                 <!-- Language Switcher -->
                 <div id="language-switcher" class="relative">
                     <button id="language-button"
@@ -72,13 +131,69 @@
                     </div>
                 </div>
 
-                <a href="/login" class="hidden sm:inline-flex items-center px-3 py-2 text-sm font-semibold hover:opacity-90 transition">
+                <a href="/login" class="inline-flex items-center px-3 py-2 text-sm font-semibold hover:opacity-90 transition">
                     <?php _e('home.nav.login', 'Iniciar sesión'); ?>
                 </a>
 
                 <a href="/tienda"
                    class="inline-flex items-center px-5 py-2.5 bg-[#e6efd8] text-[#334015] font-bold rounded-full hover:brightness-95 transition">
                     <?php _e('home.nav.view_products', 'Ver productos'); ?>
+                </a>
+            </div>
+
+            <!-- Hamburger Button (Mobile) -->
+            <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/10 transition focus:outline-none" aria-label="Toggle menu">
+                <div class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="px-4 pt-2 pb-6 space-y-3">
+            <!-- Mobile Navigation Links -->
+            <a href="#inicio" class="mobile-menu-link">
+                <i class="fas fa-home"></i>
+                <span><?php _e('home.nav.home', 'Inicio'); ?></span>
+            </a>
+            <a href="#como-funciona" class="mobile-menu-link">
+                <i class="fas fa-circle-info"></i>
+                <span><?php _e('home.nav.how_it_works', 'Como funciona'); ?></span>
+            </a>
+            <a href="#beneficios" class="mobile-menu-link">
+                <i class="fas fa-gift"></i>
+                <span><?php _e('home.nav.benefits', 'Beneficios'); ?></span>
+            </a>
+            <a href="/tienda" class="mobile-menu-link">
+                <i class="fas fa-store"></i>
+                <span><?php _e('home.nav.store', 'Tienda'); ?></span>
+            </a>
+            
+            <div class="h-px bg-white/20 my-3"></div>
+            
+            <!-- Mobile Actions -->
+            <a href="/login" class="mobile-menu-link">
+                <i class="fas fa-sign-in-alt"></i>
+                <span><?php _e('home.nav.login', 'Iniciar sesión'); ?></span>
+            </a>
+            
+            <a href="/tienda" class="block w-full px-5 py-3 bg-[#e6efd8] text-[#334015] font-bold rounded-full hover:brightness-95 transition text-center">
+                <?php _e('home.nav.view_products', 'Ver productos'); ?>
+            </a>
+            
+            <!-- Mobile Language Switcher -->
+            <div class="flex gap-2 pt-2">
+                <a href="?lang=es" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition">
+                    <img src="https://flagcdn.com/w20/es.png" alt="Español" class="w-5 h-4">
+                    <span class="text-sm">Español</span>
+                </a>
+                <a href="?lang=en" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition">
+                    <img src="https://flagcdn.com/w20/gb.png" alt="English" class="w-5 h-4">
+                    <span class="text-sm">English</span>
                 </a>
             </div>
         </div>
@@ -510,9 +625,40 @@
 
 
 
-<!-- Scripts (tu language switcher intacto) -->
+<!-- Scripts -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // ===== Hamburger Menu Toggle =====
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.querySelector('.hamburger-icon');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        if (hamburgerBtn && mobileMenu) {
+            // Toggle menu on button click
+            hamburgerBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                hamburgerIcon.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    hamburgerIcon.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    hamburgerIcon.classList.remove('active');
+                }
+            });
+        }
+
+        // ===== Language Switcher =====
         const languageButton = document.getElementById('language-button');
         const languageDropdown = document.getElementById('language-dropdown');
         const languageChevron = document.getElementById('language-chevron');
@@ -546,6 +692,24 @@
                 e.stopPropagation();
             });
         }
+
+        // ===== Smooth Scroll for Anchor Links =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offsetTop = target.offsetTop - 64; // 64px = navbar height
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
     });
 </script>
 

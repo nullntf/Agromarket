@@ -40,7 +40,7 @@ class MunicipalityController extends BaseController {
     }
 
     private function handleCreate() {
-        Session::start();
+        // Session::start();
 
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -113,7 +113,7 @@ class MunicipalityController extends BaseController {
     }
 
     private function handleEdit($id) {
-        Session::start();
+        // Session::start();
 
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';

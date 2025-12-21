@@ -10,7 +10,7 @@ class ProducerController extends BaseController {
     public function index() {
         AuthMiddleware::checkProducerAccess();
 
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         $productModel = new ProductModel();

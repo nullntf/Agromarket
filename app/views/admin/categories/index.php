@@ -17,7 +17,7 @@
 <body class="min-h-screen bg-gray-950 text-gray-100 antialiased">
     <?php 
     require_once '../helpers/Session.php';
-    Session::start();
+    // Session::start();
     $currentUser = Session::getCurrentUser();
     $isMaster = $currentUser['rol'] === 'master';
     

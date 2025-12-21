@@ -8,7 +8,7 @@ class AuthMiddleware {
      * Verificar si el usuario está autenticado
      */
     public static function checkAuth() {
-        Session::start();
+        // Session::start();
         
         // Verificar autenticación
         if (!Session::isAuthenticated()) {
@@ -85,7 +85,7 @@ class AuthMiddleware {
      * Forzar logout sin redirección (para uso interno)
      */
     private static function forceLogout() {
-        Session::start();
+        // Session::start();
         $sessionName = session_name();
         $sessionParams = session_get_cookie_params();
         $_SESSION = array();

@@ -61,7 +61,7 @@ class UserController extends BaseController {
         require_once '../app/models/AccessTokenModel.php';
         require_once '../helpers/Session.php';
 
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         if (!$currentUser) {
             header('Location: /login');
@@ -108,7 +108,7 @@ class UserController extends BaseController {
         require_once '../app/models/UserModel.php';
         require_once '../helpers/Session.php';
 
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         // Solo master puede editar
@@ -140,7 +140,7 @@ class UserController extends BaseController {
 
     private function handleEdit($id) {
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         // Solo master puede editar
@@ -188,7 +188,7 @@ class UserController extends BaseController {
         require_once '../app/models/UserModel.php';
         require_once '../helpers/Session.php';
 
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         $userModel = new UserModel();
@@ -219,7 +219,7 @@ class UserController extends BaseController {
         require_once '../app/models/UserModel.php';
         require_once '../helpers/Session.php';
 
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         $userModel = new UserModel();
@@ -255,7 +255,7 @@ class UserController extends BaseController {
         require_once '../app/models/UserModel.php';
         require_once '../helpers/Session.php';
 
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
 
         // Solo master puede eliminar

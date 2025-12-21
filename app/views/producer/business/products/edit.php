@@ -65,7 +65,7 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                     <?php
                     require_once '../helpers/Session.php';
-                    Session::start();
+                    // Session::start();
                     ?>
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::getCsrfToken()) ?>">
                     

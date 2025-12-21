@@ -23,13 +23,72 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+        
+        /* Hamburger Icon */
+        .hamburger-icon {
+            width: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .hamburger-line {
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .hamburger-icon.active .hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        
+        .hamburger-icon.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-icon.active .hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            max-height: 400px;
+        }
+        
+        .mobile-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .mobile-menu-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-link i {
+            width: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body class="bg-[#f5f7ef] text-gray-900">
 
 <!-- NAVBAR -->
-<nav class="sticky top-0 z-50 bg-[#6b7a2a] text-white shadow-sm">
+<nav class="sticky top-0 z-50 bg-[#6b7a2a] text-white shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <a href="/" class="flex items-center gap-2">
@@ -37,21 +96,47 @@
                 <span class="text-xl font-extrabold tracking-wide">AgroCompra</span>
             </a>
 
-            <div class="flex items-center gap-3">
-                <a href="/" class="hidden sm:inline-flex items-center px-3 py-2 text-sm font-semibold hover:opacity-90 transition">
+            <!-- Desktop Actions -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="/" class="inline-flex items-center px-3 py-2 text-sm font-semibold hover:opacity-90 transition">
                     <i class="fas fa-home mr-2"></i><?php _e('home.nav.home', 'Inicio'); ?>
                 </a>
 
                 <!-- Language Switcher -->
-                <div class="hidden sm:block">
-                    <?php include __DIR__ . '/../partials/language_switcher.php'; ?>
-                </div>
+                <?php include __DIR__ . '/../partials/language_switcher.php'; ?>
 
                 <a href="/login"
                    class="inline-flex items-center px-5 py-2.5 bg-[#e6efd8] text-[#334015] font-extrabold rounded-full hover:brightness-95 transition">
                     <i class="fas fa-sign-in-alt mr-2"></i><?php _e('home.nav.login', 'Iniciar Sesión'); ?>
                 </a>
             </div>
+
+            <!-- Hamburger Button (Mobile) -->
+            <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/10 transition focus:outline-none" aria-label="Toggle menu">
+                <div class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="px-4 pt-2 pb-6 space-y-3">
+            <a href="/" class="mobile-menu-link">
+                <i class="fas fa-home"></i>
+                <span><?php _e('home.nav.home', 'Inicio'); ?></span>
+            </a>
+            
+            <div class="h-px bg-white/20 my-3"></div>
+            
+            <a href="/login" class="block w-full px-5 py-3 bg-[#e6efd8] text-[#334015] font-bold rounded-full hover:brightness-95 transition text-center">
+                <?php _e('home.nav.login', 'Iniciar Sesión'); ?>
+            </a>
+            
+            <!-- Mobile Language Switcher in menu if needed -->
         </div>
     </div>
 </nav>
@@ -219,8 +304,24 @@
         </div>
     <?php else: ?>
 
+        <!-- Pagination Info -->
+        <div class="mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <p class="text-sm text-gray-600">
+                Mostrando <span id="showing-start">1</span> - <span id="showing-end">12</span> de <span id="total-products"><?= count($products) ?></span> productos
+            </p>
+            <div class="flex items-center gap-2">
+                <label for="products-per-page" class="text-sm text-gray-600">Productos por página:</label>
+                <select id="products-per-page" class="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#6b7a2a]/40 focus:border-[#6b7a2a] outline-none">
+                    <option value="12" selected>12</option>
+                    <option value="16">16</option>
+                    <option value="24">24</option>
+                    <option value="32">32</option>
+                </select>
+            </div>
+        </div>
+
         <!-- GRID DE PRODUCTOS -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <?php foreach ($products as $product): ?>
                 <article class="bg-white rounded-2xl shadow-sm border border-[#dfe8cf] overflow-hidden hover:shadow-lg hover:border-[#9fb34d]/60 transition-all group">
                     <!-- Imagen -->
@@ -283,11 +384,160 @@
                 </article>
             <?php endforeach; ?>
         </div>
+        
+        <!-- Pagination Controls -->
+        <div id="pagination-controls" class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button id="prev-page" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition" disabled>
+                <i class="fas fa-chevron-left mr-2"></i>Anterior
+            </button>
+            
+            <div id="page-numbers" class="flex flex-wrap gap-1 justify-center">
+                <!-- Page numbers will be inserted here by JavaScript -->
+            </div>
+            
+            <button id="next-page" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition">
+                Siguiente<i class="fas fa-chevron-right ml-2"></i>
+            </button>
+        </div>
 
     <?php endif; ?>
 </main>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // ===== Pagination Logic =====
+        const allProducts = Array.from(document.querySelectorAll('#products-grid > article'));
+        const totalProducts = allProducts.length;
+        let currentPage = 1;
+        let productsPerPage = 12;
+        
+        const productsGrid = document.getElementById('products-grid');
+        const prevPageBtn = document.getElementById('prev-page');
+        const nextPageBtn = document.getElementById('next-page');
+        const pageNumbersContainer = document.getElementById('page-numbers');
+        const productsPerPageSelect = document.getElementById('products-per-page');
+        const showingStart = document.getElementById('showing-start');
+        const showingEnd = document.getElementById('showing-end');
+        const totalProductsSpan = document.getElementById('total-products');
+        
+        function getTotalPages() {
+            return Math.ceil(totalProducts / productsPerPage);
+        }
+        
+        function renderProducts() {
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            
+            allProducts.forEach((product, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+            
+            // Update showing info
+            showingStart.textContent = totalProducts > 0 ? startIndex + 1 : 0;
+            showingEnd.textContent = Math.min(endIndex, totalProducts);
+            
+            // Update buttons
+            prevPageBtn.disabled = currentPage === 1;
+            nextPageBtn.disabled = currentPage === getTotalPages();
+            
+            renderPageNumbers();
+            
+            // Scroll to top of products section
+            const resultsSection = document.querySelector('section.flex.items-center.justify-between.mb-6');
+            if (resultsSection) {
+                resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        function renderPageNumbers() {
+            const totalPages = getTotalPages();
+            pageNumbersContainer.innerHTML = '';
+            
+            // Show max 5 page numbers
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            
+            if (endPage - startPage < 4) {
+                startPage = Math.max(1, endPage - 4);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.textContent = i;
+                pageBtn.className = `px-3 py-2 rounded-lg transition ${
+                    i === currentPage 
+                        ? 'bg-[#6b7a2a] text-white font-bold' 
+                        : 'border border-gray-300 hover:bg-gray-50'
+                }`;
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    renderProducts();
+                });
+                pageNumbersContainer.appendChild(pageBtn);
+            }
+        }
+        
+        if (prevPageBtn && nextPageBtn) {
+            prevPageBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderProducts();
+                }
+            });
+            
+            nextPageBtn.addEventListener('click', () => {
+                if (currentPage < getTotalPages()) {
+                    currentPage++;
+                    renderProducts();
+                }
+            });
+        }
+        
+        if (productsPerPageSelect) {
+            productsPerPageSelect.addEventListener('change', (e) => {
+                productsPerPage = parseInt(e.target.value);
+                currentPage = 1;
+                renderProducts();
+            });
+        }
+        
+        // Initial render
+        if (totalProducts > 0) {
+            renderProducts();
+        }
+        
+        // ===== Hamburger Menu Toggle =====
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.querySelector('.hamburger-icon');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                hamburgerIcon.classList.toggle('active');
+            });
+
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    hamburgerIcon.classList.remove('active');
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    hamburgerIcon.classList.remove('active');
+                }
+            });
+        }
+    });
+
     // (Opcional) Resetear filtros sin romper tu flujo
     function resetFilters(){
         window.location.href = '/tienda';

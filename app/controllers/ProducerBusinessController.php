@@ -18,7 +18,7 @@ class ProducerBusinessController extends BaseController {
         AuthMiddleware::checkProducerAccess();
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         // Obtener datos completos del usuario incluyendo profile_photo
@@ -64,7 +64,7 @@ class ProducerBusinessController extends BaseController {
         AuthMiddleware::checkProducerAccess();
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $businessModel = new BusinessModel();
@@ -90,7 +90,7 @@ class ProducerBusinessController extends BaseController {
 
     private function handleCreate($producerId) {
         
-        Session::start();
+        // Session::start();
         
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -143,7 +143,7 @@ class ProducerBusinessController extends BaseController {
         AuthMiddleware::checkProducerAccess();
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $businessModel = new BusinessModel();
@@ -175,7 +175,7 @@ class ProducerBusinessController extends BaseController {
 
     private function handleEdit($producerId) {
         
-        Session::start();
+        // Session::start();
         
         $businessModel = new BusinessModel();
         $business = $businessModel->getByProducerId($producerId);

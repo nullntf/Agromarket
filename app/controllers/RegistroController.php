@@ -9,7 +9,7 @@ require_once '../app/models/AccessTokenModel.php';
 class RegistroController extends BaseController {
     public function index() {
 
-        Session::start();
+        // Session::start();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->handleRegistration();

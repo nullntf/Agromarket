@@ -16,7 +16,7 @@ class ProducerProductController extends BaseController {
         AuthMiddleware::checkProducerAccess();
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,7 +43,7 @@ class ProducerProductController extends BaseController {
 
     private function handleCreate($producerId) {
         
-        Session::start();
+        // Session::start();
         
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -138,7 +138,7 @@ class ProducerProductController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $productModel = new ProductModel();
@@ -178,7 +178,7 @@ class ProducerProductController extends BaseController {
 
     private function handleEdit($id, $producerId) {
         
-        Session::start();
+        // Session::start();
         
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -280,7 +280,7 @@ class ProducerProductController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $productModel = new ProductModel();
@@ -318,7 +318,7 @@ class ProducerProductController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $productModel = new ProductModel();
@@ -367,7 +367,7 @@ class ProducerProductController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $productModel = new ProductModel();
@@ -402,7 +402,7 @@ class ProducerProductController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $photoModel = new ProductPhotoModel();

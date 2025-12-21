@@ -13,7 +13,7 @@ class SettingsController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         $userModel = new UserModel();
         
@@ -33,7 +33,7 @@ class SettingsController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         $userModel = new UserModel();
         
@@ -51,7 +51,7 @@ class SettingsController extends BaseController {
     private function handleEdit() {
         require_once '../helpers/FileUpload.php';
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         // Verificar CSRF token

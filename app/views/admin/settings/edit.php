@@ -43,7 +43,7 @@
                 <form method="POST" enctype="multipart/form-data" class="bg-gray-900 border border-gray-800 rounded-xl p-6 sm:p-8">
                 <?php
                 require_once '../helpers/Session.php';
-                Session::start();
+                // Session::start();
                 ?>
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::getCsrfToken()) ?>">
                 

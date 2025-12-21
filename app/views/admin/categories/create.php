@@ -44,7 +44,7 @@
                     <form method="POST" class="space-y-6">
                         <?php
                         require_once '../helpers/Session.php';
-                        Session::start();
+                        // Session::start();
                         ?>
                         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::getCsrfToken()) ?>">
                         

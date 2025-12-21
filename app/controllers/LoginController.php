@@ -6,7 +6,7 @@ require_once '../core/BaseController.php';
 class LoginController extends BaseController {
     public function index() {
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
 
         // Verificar si la sesión expiró
         if (isset($_GET['expired']) && $_GET['expired'] == '1') {

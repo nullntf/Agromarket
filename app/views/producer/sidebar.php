@@ -12,7 +12,7 @@
 
     <?php
     require_once '../helpers/Session.php';
-    Session::start();
+    // Session::start();
     $currentUser = Session::getCurrentUser();
     
     // Preparar foto de perfil (ruta de archivo)

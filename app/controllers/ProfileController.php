@@ -12,7 +12,7 @@ class ProfileController extends BaseController {
         require_once '../helpers/Session.php';
         require_once '../app/models/UserModel.php';
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         $userModel = new UserModel();
         
@@ -34,7 +34,7 @@ class ProfileController extends BaseController {
         require_once '../helpers/Session.php';
         require_once '../app/models/UserModel.php';
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         $userModel = new UserModel();
         
@@ -54,7 +54,7 @@ class ProfileController extends BaseController {
         require_once '../helpers/FileUpload.php';
         require_once '../app/models/UserModel.php';
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         // Verificar CSRF token

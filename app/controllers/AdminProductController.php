@@ -19,7 +19,7 @@ class AdminProductController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         $currentUser = Session::getCurrentUser();
         
         $productModel = new ProductModel();
@@ -53,7 +53,7 @@ class AdminProductController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -92,7 +92,7 @@ class AdminProductController extends BaseController {
         }
 
         
-        Session::start();
+        // Session::start();
         
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';

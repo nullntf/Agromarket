@@ -36,7 +36,7 @@ class DepartmentController extends BaseController {
 
     private function handleCreate() {
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
 
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -97,7 +97,7 @@ class DepartmentController extends BaseController {
 
     private function handleEdit($id) {
         require_once '../helpers/Session.php';
-        Session::start();
+        // Session::start();
 
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
