@@ -19,11 +19,6 @@ class Language {
     }
 
     private function init() {
-        // Start session if not already started
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-
         // Set language from session or use default
         if (isset($_SESSION['language']) && in_array($_SESSION['language'], ['es', 'en'])) {
             $this->language = $_SESSION['language'];

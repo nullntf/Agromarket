@@ -70,8 +70,8 @@
                             <label class="block text-sm font-semibold text-gray-700 mb-3">Foto de Perfil Actual</label>
                             <div class="flex items-center space-x-4">
                                 <?php if (!empty($user['profile_photo'])): ?>
-                                    <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>" 
-                                         alt="Foto actual" 
+                                    <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
+                                         alt="Foto actual"
                                          class="w-20 h-20 rounded-full object-cover border-4 border-gray-200">
                                 <?php else: ?>
                                     <div class="w-20 h-20 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center border-4 border-gray-200">
@@ -81,6 +81,15 @@
                                     </div>
                                 <?php endif; ?>
                             </div>
+                            <?php if (!empty($user['profile_photo'])): ?>
+                                <label class="flex items-center space-x-2 mt-3">
+                                    <input type="checkbox"
+                                           name="delete_photo"
+                                           id="delete_photo"
+                                           class="rounded border-gray-300 text-red-600 focus:ring-red-500">
+                                    <span class="text-sm text-gray-700">Eliminar foto de perfil actual</span>
+                                </label>
+                            <?php endif; ?>
                         </div>
                         
                         <!-- Change Photo -->

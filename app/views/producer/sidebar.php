@@ -18,7 +18,7 @@
     // Preparar foto de perfil (ruta de archivo)
     $profilePhoto = null;
     if (!empty($currentUser['profile_photo'])) {
-        $profilePhoto = '/uploads/profiles/' . $currentUser['profile_photo'];
+        $profilePhoto = '/uploads/profiles/' . $currentUser['profile_photo'] . '?t=' . time();
     }
     ?>
 

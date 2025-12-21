@@ -187,7 +187,7 @@ return [
     ],
     'whatsapp' => [
         'business_message' => 'Hello {producer}, I am interested in learning more about your business {business}. You can view your profile here: {url}',
-        'product_message' => 'Hello {producer}, I am interested in the product "{product}" from your business {business}. You can view the product here: {url}'
+        'product_message' => 'Hello {producer}, I am interested in the product "{product}" from {business}. Could you provide more information about price, availability, and delivery options? Thank you. Product: {url}'
     ],
     
     'admin' => [

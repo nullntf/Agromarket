@@ -187,7 +187,7 @@ return [
     ],
     'whatsapp' => [
         'business_message' => 'Hola {producer}, me interesa conocer más sobre su negocio {business}. Puede ver su perfil aquí: {url}',
-        'product_message' => 'Hola {producer}, me interesa el producto "{product}" de su negocio {business}. Puede ver el producto aquí: {url}'
+        'product_message' => 'Hola {producer}, estoy interesado en el producto "{product}" de {business}. ¿Podría proporcionarme más información sobre precio, disponibilidad y opciones de entrega? Gracias. Producto: {url}'
     ],
     
     'admin' => [

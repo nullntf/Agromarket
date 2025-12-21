@@ -108,6 +108,14 @@ class ProfileController extends BaseController {
             'email' => $email
         ];
 
+        // Procesar eliminación de foto si se solicitó
+        if (isset($_POST['delete_photo'])) {
+            if (!empty($user['profile_photo'])) {
+                FileUpload::deleteImage($user['profile_photo'], 'profiles');
+            }
+            $updateData['profile_photo'] = null;
+        }
+
         // Procesar foto de perfil si se subió
         if (isset($_FILES['profile_photo']) && $_FILES['profile_photo']['error'] === UPLOAD_ERR_OK) {
             // Eliminar foto anterior si existe
@@ -163,12 +171,20 @@ class ProfileController extends BaseController {
         // Actualizar usuario
         $userModel->update($currentUser['id'], $updateData);
 
-        // Actualizar sesión con los nuevos datos
-        Session::updateCurrentUser([
+        // Preparar datos para actualizar sesión
+        $sessionUpdate = [
             'name' => $name,
             'lastname' => $lastname,
             'email' => $email
-        ]);
+        ];
+
+        // Incluir profile_photo si fue modificado
+        if (isset($updateData['profile_photo'])) {
+            $sessionUpdate['profile_photo'] = $updateData['profile_photo'];
+        }
+
+        // Actualizar sesión con los nuevos datos
+        Session::updateCurrentUser($sessionUpdate);
 
         header('Location: /producer/profile?success=' . urlencode('Perfil actualizado exitosamente.'));
         exit;

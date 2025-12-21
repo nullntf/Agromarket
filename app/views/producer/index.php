@@ -59,7 +59,7 @@
                         <span class="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">Activo</span>
                     </div>
                     <h3 class="text-sm font-medium text-gray-600 mb-1">Productos Activos</h3>
-                    <p class="text-3xl font-bold text-gray-900">0</p>
+                    <p class="text-3xl font-bold text-gray-900"><?= htmlspecialchars($activeProductsCount ?? 0) ?></p>
                     <a href="/producer/business" class="inline-flex items-center text-sm text-green-600 hover:text-green-700 font-medium mt-4 group">
                         <span>Ver productos</span>
                         <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
