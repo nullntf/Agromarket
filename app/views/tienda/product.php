@@ -300,13 +300,8 @@ function contactWhatsApp() {
     const producerName = '<?= htmlspecialchars($product['producer_name']) ?>';
     const businessName = '<?= htmlspecialchars($business['name']) ?>';
     const productName = '<?= htmlspecialchars($product['name']) ?>';
-    const productUrl = window.location.href;
-    const message = `<?= _e('whatsapp.product_message', 'Hola {producer}, me interesa el producto "{product}" de su negocio {business}. Puede ver el producto aquí: {url}', [
-        'producer' => '${producerName}',
-        'product' => '${productName}',
-        'business' => '${businessName}',
-        'url' => '${productUrl}'
-    ]) ?>`;
+    const productUrl = 'https://agrocompra.santaanacentro.gob.sv' + window.location.pathname + (window.location.search || '');
+    const message = `Hola ${producerName}, estoy interesado en el producto "${productName}" de ${businessName}. ¿Podría proporcionarme más información sobre precio, disponibilidad y opciones de entrega? Gracias. Producto: ${productUrl}`;
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${cleanPhone}?text=${encodedMessage}`, '_blank');
 }
