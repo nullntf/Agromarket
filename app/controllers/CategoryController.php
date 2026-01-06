@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para la gestión de categorías
 
 require_once '../core/BaseController.php';
@@ -15,8 +16,7 @@ class CategoryController extends BaseController {
 
         // Solo master puede ver categorías
         if ($currentUser['rol'] !== 'master') {
-            header('Location: /admin?success=' . urlencode('No tienes permisos para acceder a categorías.'));
-            exit;
+            redirect('/admin?success=' . urlencode('No tienes permisos para acceder a categorías.'));
         }
 
         require_once '../app/models/CategoryModel.php';
@@ -42,8 +42,7 @@ class CategoryController extends BaseController {
 
         // Solo master puede crear categorías
         if ($currentUser['rol'] !== 'master') {
-            header('Location: /admin/categories?success=' . urlencode('No tienes permisos para crear categorías.'));
-            exit;
+            redirect('/admin/categories?success=' . urlencode('No tienes permisos para crear categorías.'));
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -86,8 +85,7 @@ class CategoryController extends BaseController {
 
         $categoryModel->insert(['name' => $name]);
 
-        header('Location: /admin/categories?success=' . urlencode('Categoría creada exitosamente.'));
-        exit;
+        redirect('/admin/categories?success=' . urlencode('Categoría creada exitosamente.'));
     }
 
     public function edit($id = null) {
@@ -99,13 +97,11 @@ class CategoryController extends BaseController {
 
         // Solo master puede editar categorías
         if ($currentUser['rol'] !== 'master') {
-            header('Location: /admin/categories?success=' . urlencode('No tienes permisos para editar categorías.'));
-            exit;
+            redirect('/admin/categories?success=' . urlencode('No tienes permisos para editar categorías.'));
         }
 
         if (!$id) {
-            header('Location: /admin/categories');
-            exit;
+            redirect('/admin/categories');
         }
 
         require_once '../app/models/CategoryModel.php';
@@ -118,8 +114,7 @@ class CategoryController extends BaseController {
 
         $category = $categoryModel->getById($id);
         if (!$category) {
-            header('Location: /admin/categories');
-            exit;
+            redirect('/admin/categories');
         }
 
         $this->render('admin/categories/edit', ['category' => $category]);
@@ -157,8 +152,7 @@ class CategoryController extends BaseController {
 
         $categoryModel->update($id, ['name' => $name]);
 
-        header('Location: /admin/categories?success=' . urlencode('Categoría actualizada exitosamente.'));
-        exit;
+        redirect('/admin/categories?success=' . urlencode('Categoría actualizada exitosamente.'));
     }
 
     public function delete($id = null) {
@@ -170,13 +164,11 @@ class CategoryController extends BaseController {
 
         // Solo master puede eliminar categorías
         if ($currentUser['rol'] !== 'master') {
-            header('Location: /admin/categories?success=' . urlencode('No tienes permisos para eliminar categorías.'));
-            exit;
+            redirect('/admin/categories?success=' . urlencode('No tienes permisos para eliminar categorías.'));
         }
 
         if (!$id) {
-            header('Location: /admin/categories');
-            exit;
+            redirect('/admin/categories');
         }
 
         require_once '../app/models/CategoryModel.php';
@@ -184,13 +176,11 @@ class CategoryController extends BaseController {
 
         $category = $categoryModel->getById($id);
         if (!$category) {
-            header('Location: /admin/categories');
-            exit;
+            redirect('/admin/categories');
         }
 
         $categoryModel->delete($id);
 
-        header('Location: /admin/categories?success=' . urlencode('Categoría eliminada exitosamente.'));
-        exit;
+        redirect('/admin/categories?success=' . urlencode('Categoría eliminada exitosamente.'));
     }
 }

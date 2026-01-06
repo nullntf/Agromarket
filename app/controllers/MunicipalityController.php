@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para gestión de municipios
 
 require_once '../core/BaseController.php';
@@ -77,16 +78,14 @@ class MunicipalityController extends BaseController {
             'department_id' => $departmentId
         ]);
 
-        header('Location: /admin/municipalities?success=' . urlencode('Municipio creado exitosamente.'));
-        exit;
+        redirect('/admin/municipalities?success=' . urlencode('Municipio creado exitosamente.'));
     }
 
     public function edit($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/municipalities');
-            exit;
+            redirect('/admin/municipalities');
         }
 
         
@@ -100,8 +99,7 @@ class MunicipalityController extends BaseController {
 
         $municipality = $municipalityModel->getById($id);
         if (!$municipality) {
-            header('Location: /admin/municipalities');
-            exit;
+            redirect('/admin/municipalities');
         }
 
         $departments = $departmentModel->getAll();
@@ -158,29 +156,25 @@ class MunicipalityController extends BaseController {
             'department_id' => $departmentId
         ]);
 
-        header('Location: /admin/municipalities?success=' . urlencode('Municipio actualizado exitosamente.'));
-        exit;
+        redirect('/admin/municipalities?success=' . urlencode('Municipio actualizado exitosamente.'));
     }
 
     public function delete($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/municipalities');
-            exit;
+            redirect('/admin/municipalities');
         }
 
         $municipalityModel = new MunicipalityModel();
 
         $municipality = $municipalityModel->getById($id);
         if (!$municipality) {
-            header('Location: /admin/municipalities');
-            exit;
+            redirect('/admin/municipalities');
         }
 
         $municipalityModel->delete($id);
 
-        header('Location: /admin/municipalities?success=' . urlencode('Municipio eliminado exitosamente.'));
-        exit;
+        redirect('/admin/municipalities?success=' . urlencode('Municipio eliminado exitosamente.'));
     }
 }

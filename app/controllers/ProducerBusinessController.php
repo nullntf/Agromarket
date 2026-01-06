@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para gestión de negocios de productores
 
 require_once '../core/BaseController.php';
@@ -32,8 +33,7 @@ class ProducerBusinessController extends BaseController {
         
         // Si no tiene negocio, redirigir a crear
         if (!$business) {
-            header('Location: /producer/business/create');
-            exit;
+            redirect('/producer/business/create');
         }
         
         $productModel = new ProductModel();
@@ -71,8 +71,7 @@ class ProducerBusinessController extends BaseController {
         
         // Si ya tiene negocio, redirigir al index
         if ($businessModel->producerHasBusiness($currentUser['id'])) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -104,8 +103,7 @@ class ProducerBusinessController extends BaseController {
         
         // Verificar que no tenga ya un negocio
         if ($businessModel->producerHasBusiness($producerId)) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         $name = trim($_POST['name'] ?? '');
@@ -135,8 +133,7 @@ class ProducerBusinessController extends BaseController {
 
         $businessModel->insert($data);
 
-        header('Location: /producer/business?success=' . urlencode('¡Negocio creado exitosamente! Ahora puedes agregar tus productos.'));
-        exit;
+        redirect('/producer/business?success=' . urlencode('¡Negocio creado exitosamente! Ahora puedes agregar tus productos.'));
     }
 
     public function edit() {
@@ -156,8 +153,7 @@ class ProducerBusinessController extends BaseController {
         $business = $businessModel->getByProducerId($currentUser['id']);
         
         if (!$business) {
-            header('Location: /producer/business?success=' . urlencode('No tienes un negocio registrado.'));
-            exit;
+            redirect('/producer/business?success=' . urlencode('No tienes un negocio registrado.'));
         }
         
         $departmentModel = new DepartmentModel();
@@ -227,7 +223,6 @@ class ProducerBusinessController extends BaseController {
 
         $businessModel->update($business['id'], $data);
 
-        header('Location: /producer/business?success=' . urlencode('Negocio actualizado exitosamente.'));
-        exit;
+        redirect('/producer/business?success=' . urlencode('Negocio actualizado exitosamente.'));
     }
 }

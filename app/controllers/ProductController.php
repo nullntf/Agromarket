@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para gestión de productos
 
 require_once '../core/BaseController.php';
@@ -15,8 +16,7 @@ class ProductController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         if (!$businessId) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         
@@ -25,8 +25,7 @@ class ProductController extends BaseController {
 
         $business = $businessModel->getById($businessId);
         if (!$business) {
-            header('Location: /admin/businesses?success=' . urlencode('Negocio no encontrado.'));
-            exit;
+            redirect('/admin/businesses?success=' . urlencode('Negocio no encontrado.'));
         }
 
         $products = $productModel->getByBusiness($businessId);
@@ -45,8 +44,7 @@ class ProductController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         if (!$businessId) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         
@@ -60,8 +58,7 @@ class ProductController extends BaseController {
 
         $business = $businessModel->getById($businessId);
         if (!$business) {
-            header('Location: /admin/businesses?success=' . urlencode('Negocio no encontrado.'));
-            exit;
+            redirect('/admin/businesses?success=' . urlencode('Negocio no encontrado.'));
         }
 
         $categories = $categoryModel->getAll();
@@ -140,16 +137,14 @@ class ProductController extends BaseController {
             }
         }
 
-        header('Location: /admin/products/' . $businessId . '?success=' . urlencode('Producto creado exitosamente.'));
-        exit;
+        redirect('/admin/products/' . $businessId . '?success=' . urlencode('Producto creado exitosamente.'));
     }
 
     public function edit($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         
@@ -162,8 +157,7 @@ class ProductController extends BaseController {
 
         $product = $productModel->getById($id);
         if (!$product) {
-            header('Location: /admin/businesses?success=' . urlencode('Producto no encontrado.'));
-            exit;
+            redirect('/admin/businesses?success=' . urlencode('Producto no encontrado.'));
         }
 
         $categoryModel = new CategoryModel();
@@ -251,16 +245,14 @@ class ProductController extends BaseController {
             }
         }
 
-        header('Location: /admin/products/' . $product['business_id'] . '?success=' . urlencode('Producto actualizado exitosamente.'));
-        exit;
+        redirect('/admin/products/' . $product['business_id'] . '?success=' . urlencode('Producto actualizado exitosamente.'));
     }
 
     public function view($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         
@@ -269,8 +261,7 @@ class ProductController extends BaseController {
 
         $product = $productModel->getById($id);
         if (!$product) {
-            header('Location: /admin/businesses?success=' . urlencode('Producto no encontrado.'));
-            exit;
+            redirect('/admin/businesses?success=' . urlencode('Producto no encontrado.'));
         }
 
         $photos = $photoModel->getByProduct($id);
@@ -285,67 +276,58 @@ class ProductController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         $productModel = new ProductModel();
 
         $product = $productModel->getById($id);
         if (!$product) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         $productModel->toggleStatus($id);
 
-        header('Location: /admin/products/' . $product['business_id'] . '?success=' . urlencode('Estado del producto actualizado.'));
-        exit;
+        redirect('/admin/products/' . $product['business_id'] . '?success=' . urlencode('Estado del producto actualizado.'));
     }
 
     public function delete($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         $productModel = new ProductModel();
 
         $product = $productModel->getById($id);
         if (!$product) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         $businessId = $product['business_id'];
         $productModel->delete($id);
 
-        header('Location: /admin/products/' . $businessId . '?success=' . urlencode('Producto eliminado exitosamente.'));
-        exit;
+        redirect('/admin/products/' . $businessId . '?success=' . urlencode('Producto eliminado exitosamente.'));
     }
 
     public function deletePhoto($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         $photoModel = new ProductPhotoModel();
 
         $photo = $photoModel->getById($id);
         if (!$photo) {
-            header('Location: /admin/businesses');
-            exit;
+            redirect('/admin/businesses');
         }
 
         $productId = $photo['product_id'];
         $photoModel->delete($id);
 
-        header('Location: /admin/products/edit/' . $productId . '?success=' . urlencode('Foto eliminada exitosamente.'));
-        exit;
+        redirect('/admin/products/edit/' . $productId . '?success=' . urlencode('Foto eliminada exitosamente.'));
     }
 }

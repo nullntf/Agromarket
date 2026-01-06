@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para la gestión de perfil de productores
 
 require_once '../core/BaseController.php';
@@ -186,7 +187,6 @@ class ProfileController extends BaseController {
         // Actualizar sesión con los nuevos datos
         Session::updateCurrentUser($sessionUpdate);
 
-        header('Location: /producer/profile?success=' . urlencode('Perfil actualizado exitosamente.'));
-        exit;
+        redirect('/producer/profile?success=' . urlencode('Perfil actualizado exitosamente.'));
     }
 }

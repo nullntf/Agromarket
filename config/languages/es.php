@@ -75,7 +75,7 @@ return [
             'official' => 'Oficial',
             'title' => 'Plataforma Agrícola',
             'subtitle' => 'Municipal de Santa Ana',
-            'description' => 'Unimos productores locales con la comunidad. Una iniciativa de la Unidad de Agricultura y Ganadería para fortalecer el sector agrícola del municipio.',
+            'description' => 'Una iniciativa de nuestro alcalde el ing.Gustavo Acevedo y la unidad de Agricultura y Ganadería de la alcaldía municipal de santa ana centro',
             'cta' => [
                 'explore' => 'Explorar Tienda',
                 'how_it_works' => 'Cómo Funciona'

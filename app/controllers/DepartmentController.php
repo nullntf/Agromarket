@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para la gestión de departamentos
 
 require_once '../core/BaseController.php';
@@ -66,16 +67,14 @@ class DepartmentController extends BaseController {
 
         $departmentModel->insert(['name' => $name]);
 
-        header('Location: /admin/departments?success=' . urlencode('Departamento creado exitosamente.'));
-        exit;
+        redirect('/admin/departments?success=' . urlencode('Departamento creado exitosamente.'));
     }
 
     public function edit($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/departments');
-            exit;
+            redirect('/admin/departments');
         }
 
         require_once '../app/models/DepartmentModel.php';
@@ -88,8 +87,7 @@ class DepartmentController extends BaseController {
 
         $department = $departmentModel->getById($id);
         if (!$department) {
-            header('Location: /admin/departments');
-            exit;
+            redirect('/admin/departments');
         }
 
         $this->render('admin/departments/edit', ['department' => $department]);
@@ -127,16 +125,14 @@ class DepartmentController extends BaseController {
 
         $departmentModel->update($id, ['name' => $name]);
 
-        header('Location: /admin/departments?success=' . urlencode('Departamento actualizado exitosamente.'));
-        exit;
+        redirect('/admin/departments?success=' . urlencode('Departamento actualizado exitosamente.'));
     }
 
     public function delete($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/departments');
-            exit;
+            redirect('/admin/departments');
         }
 
         require_once '../app/models/DepartmentModel.php';
@@ -144,20 +140,17 @@ class DepartmentController extends BaseController {
 
         $department = $departmentModel->getById($id);
         if (!$department) {
-            header('Location: /admin/departments');
-            exit;
+            redirect('/admin/departments');
         }
 
         // Verificar si tiene municipios asociados
         $municipalitiesCount = $departmentModel->countMunicipalities($id);
         if ($municipalitiesCount > 0) {
-            header('Location: /admin/departments?success=' . urlencode("No se puede eliminar el departamento porque tiene {$municipalitiesCount} municipios asociados."));
-            exit;
+            redirect('/admin/departments?success=' . urlencode("No se puede eliminar el departamento porque tiene {$municipalitiesCount} municipios asociados."));
         }
 
         $departmentModel->delete($id);
 
-        header('Location: /admin/departments?success=' . urlencode('Departamento eliminado exitosamente.'));
-        exit;
+        redirect('/admin/departments?success=' . urlencode('Departamento eliminado exitosamente.'));
     }
 }

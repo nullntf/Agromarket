@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para registro de usuarios
 
 require_once '../core/BaseController.php';
@@ -144,13 +145,13 @@ class RegistroController extends BaseController {
         switch ($role) {
             case 'admin':
             case 'master':
-                header('Location: /admin');
+                redirect('/admin');
                 break;
             case 'producer':
-                header('Location: /producer');
+                redirect('/producer');
                 break;
             default:
-                header('Location: /');
+                redirect('/');
         }
         exit;
     }

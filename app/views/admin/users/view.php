@@ -24,7 +24,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <h1 class="text-xl font-bold text-gray-100">Detalle de Usuario</h1>
-                <a href="/admin/users" class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors border border-gray-700">
+                <a href="<?= BASE_URL ?>/admin/users" class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors border border-gray-700">
                     <i class="fas fa-arrow-left"></i>
                     <span class="hidden sm:inline">Volver</span>
                 </a>
@@ -40,7 +40,7 @@
                         <!-- Profile Photo -->
                         <div class="flex-shrink-0">
                             <?php if (!empty($user['profile_photo'])): ?>
-                                <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
+                                <img src="<?= BASE_URL ?>/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
                                      alt="Foto de perfil"
                                      class="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-gray-800 shadow-lg">
                             <?php else: ?>
@@ -164,7 +164,7 @@
                 <!-- Actions -->
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="/admin/users/edit/<?= $user['id'] ?>" 
+                        <a href="<?= BASE_URL ?>/admin/users/edit/<?= $user['id'] ?>" 
                            class="flex-1 inline-flex items-center justify-center space-x-2 bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg transition-colors font-medium">
                             <i class="fas fa-edit"></i>
                             <span>Editar Usuario</span>
@@ -181,7 +181,7 @@
             <div class="bg-gray-900 border border-gray-800 rounded-xl p-12 text-center max-w-md mx-auto">
                 <i class="fas fa-user-slash text-5xl text-gray-700 mb-4"></i>
                 <p class="text-gray-400 mb-6">Usuario no encontrado.</p>
-                <a href="/admin/users" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
+                <a href="<?= BASE_URL ?>/admin/users" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
                     <i class="fas fa-arrow-left"></i>
                     <span>Volver a Usuarios</span>
                 </a>

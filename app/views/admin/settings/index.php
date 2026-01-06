@@ -42,7 +42,7 @@
                     <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
                         <div class="flex-shrink-0">
                             <?php if (!empty($user['profile_photo'])): ?>
-                                <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
+                                <img src="<?= BASE_URL ?>/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
                                      alt="Foto de perfil"
                                      class="w-24 h-24 rounded-full object-cover border-4 border-gray-800 shadow-lg">
                             <?php else: ?>
@@ -103,7 +103,7 @@
 
                 <!-- Actions -->
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                    <a href="/admin/settings/edit" 
+                    <a href="<?= BASE_URL ?>/admin/settings/edit" 
                        class="w-full inline-flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition-colors font-semibold">
                         <i class="fas fa-edit"></i>
                         <span>Editar Mi Perfil</span>

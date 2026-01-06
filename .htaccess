@@ -1,0 +1,28 @@
+RewriteEngine On
+
+# Denegar acceso a archivos y directorios sensibles
+RedirectMatch 404 ^/config/
+RedirectMatch 404 /\.git
+RedirectMatch 404 /app/
+RedirectMatch 404 /core/
+RedirectMatch 404 /helpers/
+RedirectMatch 404 /middlewares/
+RedirectMatch 404 /db/
+
+# Si el archivo existe directamente en la raíz, servirlo
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Si el directorio existe directamente, permitirlo
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Si el archivo existe dentro de public/, servirlo desde ahí
+# (para imágenes, CSS, JS, uploads, etc.)
+RewriteCond %{REQUEST_URI} ^/(uploads|css|js|images|fonts)/
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
+RewriteCond public%{REQUEST_URI} -f
+RewriteRule ^(.*)$ public/$1 [L]
+
+# Todo lo demás va al router PHP
+RewriteRule ^(.*)$ public/index.php [QSA,L]

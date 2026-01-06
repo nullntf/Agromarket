@@ -30,7 +30,7 @@
                         <i class="fas fa-eye text-green-600 text-xl"></i>
                         <h1 class="text-xl font-bold text-gray-900">Detalles del Producto</h1>
                     </div>
-                    <a href="/producer/business" class="text-sm text-gray-600 hover:text-green-600 transition-colors flex items-center space-x-2">
+                    <a href="<?= BASE_URL ?>/producer/business" class="text-sm text-gray-600 hover:text-green-600 transition-colors flex items-center space-x-2">
                         <i class="fas fa-arrow-left"></i>
                         <span class="hidden sm:inline">Volver</span>
                     </a>
@@ -48,7 +48,7 @@
                             <?php if (!empty($photos)): ?>
                             <div class="mb-4">
                                 <img id="main-image" 
-                                     src="/uploads/products/<?= htmlspecialchars($photos[0]['photo']) ?>" 
+                                     src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($photos[0]['photo']) ?>" 
                                      alt="<?= htmlspecialchars($product['name']) ?>"
                                      class="w-full h-96 object-cover rounded-lg border-2 border-gray-200">
                             </div>
@@ -56,7 +56,7 @@
                             <?php if (count($photos) > 1): ?>
                             <div class="grid grid-cols-4 gap-2">
                                 <?php foreach ($photos as $index => $photo): ?>
-                                <img src="/uploads/products/<?= htmlspecialchars($photo['photo']) ?>" 
+                                <img src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($photo['photo']) ?>" 
                                      alt="Foto <?= $index + 1 ?>"
                                      onclick="changeMainImage(this.src)"
                                      class="w-full h-20 object-cover rounded-lg cursor-pointer border-2 border-gray-200 hover:border-green-500 transition-all">
@@ -116,7 +116,7 @@
                             
                             <!-- Actions -->
                             <div class="space-y-3 pt-4 border-t border-gray-200">
-                                <a href="/producer/business/products/edit/<?= $product['id'] ?>" 
+                                <a href="<?= BASE_URL ?>/producer/business/products/edit/<?= $product['id'] ?>" 
                                    class="block w-full text-center inline-flex items-center justify-center space-x-2 bg-yellow-600 hover:bg-yellow-700 text-white py-3 px-4 rounded-lg transition-colors font-semibold">
                                     <i class="fas fa-edit"></i>
                                     <span>Editar Producto</span>

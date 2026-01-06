@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para gestión de productos por administradores
 
 require_once '../core/BaseController.php';
@@ -14,8 +15,7 @@ class AdminProductController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
 
         
@@ -26,8 +26,7 @@ class AdminProductController extends BaseController {
         $product = $productModel->getById($id);
         
         if (!$product) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
         
         $photoModel = new ProductPhotoModel();
@@ -48,8 +47,7 @@ class AdminProductController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
 
         
@@ -58,16 +56,14 @@ class AdminProductController extends BaseController {
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Session::verifyCsrfToken($csrfToken)) {
-            header('Location: /admin/business?error=' . urlencode('Token CSRF inválido.'));
-            exit;
+            redirect('/admin/business?error=' . urlencode('Token CSRF inválido.'));
         }
         
         $productModel = new ProductModel();
         $product = $productModel->getById($id);
         
         if (!$product) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
         
         // Cambiar estado y marcar como desactivado por admin si se está desactivando
@@ -79,16 +75,14 @@ class AdminProductController extends BaseController {
             'disabled_by_admin' => $disabledByAdmin
         ]);
         
-        header('Location: /admin/business/products/view/' . $id . '?success=' . urlencode('Estado del producto actualizado.'));
-        exit;
+        redirect('/admin/business/products/view/' . $id . '?success=' . urlencode('Estado del producto actualizado.'));
     }
 
     public function delete($id = null) {
         AuthMiddleware::checkMasterAccess(); // Solo master puede eliminar
 
         if (!$id) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
 
         
@@ -97,22 +91,19 @@ class AdminProductController extends BaseController {
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Session::verifyCsrfToken($csrfToken)) {
-            header('Location: /admin/business?error=' . urlencode('Token CSRF inválido.'));
-            exit;
+            redirect('/admin/business?error=' . urlencode('Token CSRF inválido.'));
         }
         
         $productModel = new ProductModel();
         $product = $productModel->getById($id);
         
         if (!$product) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
         
         $businessId = $product['business_id'];
         $productModel->delete($id);
         
-        header('Location: /admin/business/view/' . $businessId . '?success=' . urlencode('Producto eliminado exitosamente.'));
-        exit;
+        redirect('/admin/business/view/' . $businessId . '?success=' . urlencode('Producto eliminado exitosamente.'));
     }
 }

@@ -78,23 +78,23 @@
     <nav class="bg-[#6b7a2a] text-white sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="/" class="flex items-center space-x-2">
+                <a href="<?= BASE_URL ?>/" class="flex items-center space-x-2">
                     <i class="fas fa-seedling text-[#e6efd8] text-2xl"></i>
                     <span class="text-xl font-bold text-white">AgroCompra</span>
                 </a>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-3">
-                    <a href="/tienda" class="inline-flex items-center px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
+                    <a href="<?= BASE_URL ?>/tienda" class="inline-flex items-center px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
                         <i class="fas fa-store mr-2"></i><?= _e('store.title', 'Tienda') ?>
                     </a>
-                    <a href="/" class="inline-flex items-center px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
+                    <a href="<?= BASE_URL ?>/" class="inline-flex items-center px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
                         <i class="fas fa-home mr-2"></i><?= _e('breadcrumb_home', 'Inicio') ?>
                     </a>
                     <!-- Language Switcher -->
                     <?php include __DIR__ . '/../partials/language_switcher.php'; ?>
                     
-                    <a href="/login" class="inline-flex items-center px-5 py-2.5 bg-[#e6efd8] text-[#334015] font-extrabold rounded-full hover:brightness-95 transition">
+                    <a href="<?= BASE_URL ?>/login" class="inline-flex items-center px-5 py-2.5 bg-[#e6efd8] text-[#334015] font-extrabold rounded-full hover:brightness-95 transition">
                         <i class="fas fa-sign-in-alt mr-2"></i><?= _e('login', 'Iniciar Sesión') ?>
                     </a>
                 </div>
@@ -113,18 +113,18 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu md:hidden">
             <div class="px-4 pt-2 pb-6 space-y-3">
-                <a href="/tienda" class="mobile-menu-link">
+                <a href="<?= BASE_URL ?>/tienda" class="mobile-menu-link">
                     <i class="fas fa-store"></i>
                     <span><?= _e('store.title', 'Tienda') ?></span>
                 </a>
-                <a href="/" class="mobile-menu-link">
+                <a href="<?= BASE_URL ?>/" class="mobile-menu-link">
                     <i class="fas fa-home"></i>
                     <span><?= _e('breadcrumb_home', 'Inicio') ?></span>
                 </a>
                 
                 <div class="h-px bg-white/20 my-3"></div>
                 
-                <a href="/login" class="block w-full px-5 py-3 bg-[#e6efd8] text-[#334015] font-bold rounded-full hover:brightness-95 transition text-center">
+                <a href="<?= BASE_URL ?>/login" class="block w-full px-5 py-3 bg-[#e6efd8] text-[#334015] font-bold rounded-full hover:brightness-95 transition text-center">
                     <?= _e('login', 'Iniciar Sesión') ?>
                 </a>
             </div>
@@ -140,7 +140,7 @@
                     <!-- Foto de Perfil del Productor -->
                     <div class="flex-shrink-0 mx-auto md:mx-0">
                         <?php if (!empty($business['producer_photo'])): ?>
-                            <img src="/uploads/profiles/<?= htmlspecialchars($business['producer_photo']) ?>" 
+                            <img src="<?= BASE_URL ?>/uploads/profiles/<?= htmlspecialchars($business['producer_photo']) ?>" 
                                  alt="<?= htmlspecialchars($business['producer_name']) ?>" 
                                  class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl">
                         <?php else: ?>
@@ -241,7 +241,7 @@
                     <div class="bg-white rounded-2xl shadow-sm border border-[#dfe8cf] overflow-hidden hover:shadow-lg hover:border-[#9fb34d]/60 transition-all group">
                         <div class="h-52 bg-gray-100 relative overflow-hidden">
                             <?php if ($product['main_photo']): ?>
-                                <img src="/uploads/products/<?= htmlspecialchars($product['main_photo']) ?>" 
+                                <img src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($product['main_photo']) ?>" 
                                      alt="<?= htmlspecialchars($product['name']) ?>" 
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                             <?php else: ?>
@@ -260,7 +260,7 @@
                             </p>
                             
                             <div class="space-y-2">
-                                <a href="/tienda/product/<?= $product['id'] ?>" 
+                                <a href="<?= BASE_URL ?>/tienda/product/<?= $product['id'] ?>" 
                                    class="block w-full text-center bg-[#1a1f12] hover:bg-[#14180f] text-white py-2.5 px-4 rounded-xl transition font-semibold">
                                     <i class="fas fa-eye mr-2"></i><?= _e('business.view_details', 'Ver Detalles') ?>
                                 </a>

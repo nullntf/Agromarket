@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador principal para administradores
 
 require_once '../core/BaseController.php';
@@ -23,7 +24,7 @@ class AdminController extends BaseController {
         }
         
         // If language is not valid, redirect to dashboard
-        header('Location: /admin');
+        redirect('/admin');
         exit();
     }
     

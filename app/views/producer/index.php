@@ -31,7 +31,7 @@
                         <h1 class="text-xl font-bold text-gray-900">Panel de Productor</h1>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <a href="/producer/profile" class="hidden sm:flex items-center space-x-2 text-sm text-gray-700 hover:text-green-600 transition-colors">
+                        <a href="<?= BASE_URL ?>/producer/profile" class="hidden sm:flex items-center space-x-2 text-sm text-gray-700 hover:text-green-600 transition-colors">
                             <i class="fas fa-user-circle text-lg"></i>
                             <span class="font-medium">Mi Cuenta</span>
                         </a>
@@ -60,7 +60,7 @@
                     </div>
                     <h3 class="text-sm font-medium text-gray-600 mb-1">Productos Activos</h3>
                     <p class="text-3xl font-bold text-gray-900"><?= htmlspecialchars($activeProductsCount ?? 0) ?></p>
-                    <a href="/producer/business" class="inline-flex items-center text-sm text-green-600 hover:text-green-700 font-medium mt-4 group">
+                    <a href="<?= BASE_URL ?>/producer/business" class="inline-flex items-center text-sm text-green-600 hover:text-green-700 font-medium mt-4 group">
                         <span>Ver productos</span>
                         <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                     </a>
@@ -76,7 +76,7 @@
                     </div>
                     <h3 class="text-sm font-medium text-gray-600 mb-1">Mi Negocio</h3>
                     <p class="text-3xl font-bold text-gray-900">1</p>
-                    <a href="/producer/business" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 font-medium mt-4 group">
+                    <a href="<?= BASE_URL ?>/producer/business" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 font-medium mt-4 group">
                         <span>Gestionar</span>
                         <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                     </a>
@@ -92,7 +92,7 @@
                     </div>
                     <h3 class="text-sm font-medium text-gray-600 mb-1">Mi Perfil</h3>
                     <p class="text-3xl font-bold text-gray-900">100%</p>
-                    <a href="/producer/profile" class="inline-flex items-center text-sm text-purple-600 hover:text-purple-700 font-medium mt-4 group">
+                    <a href="<?= BASE_URL ?>/producer/profile" class="inline-flex items-center text-sm text-purple-600 hover:text-purple-700 font-medium mt-4 group">
                         <span>Ver perfil</span>
                         <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                     </a>
@@ -103,7 +103,7 @@
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
                 <h3 class="text-lg font-bold text-gray-900 mb-6">Acciones Rápidas</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <a href="/producer/business" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all group">
+                    <a href="<?= BASE_URL ?>/producer/business" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all group">
                         <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
                             <i class="fas fa-plus text-green-600"></i>
                         </div>
@@ -113,7 +113,7 @@
                         </div>
                     </a>
                     
-                    <a href="/producer/business" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all group">
+                    <a href="<?= BASE_URL ?>/producer/business" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all group">
                         <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
                             <i class="fas fa-edit text-blue-600"></i>
                         </div>
@@ -123,7 +123,7 @@
                         </div>
                     </a>
                     
-                    <a href="/tienda" target="_blank" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-200 hover:border-purple-300 hover:bg-purple-50 transition-all group">
+                    <a href="<?= BASE_URL ?>/tienda" target="_blank" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-200 hover:border-purple-300 hover:bg-purple-50 transition-all group">
                         <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
                             <i class="fas fa-external-link-alt text-purple-600"></i>
                         </div>

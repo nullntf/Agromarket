@@ -28,7 +28,7 @@
     <div class="w-full max-w-md">
         <!-- Logo y Título -->
         <div class="text-center mb-8">
-            <a href="/" class="inline-flex items-center space-x-2 mb-6">
+            <a href="<?= BASE_URL ?>/" class="inline-flex items-center space-x-2 mb-6">
                 <i class="fas fa-seedling text-green-600 text-2xl"></i>
                 <span class="text-2xl font-bold text-gray-900">AgroCompra</span>
             </a>
@@ -193,7 +193,7 @@
 
             <!-- Login link -->
             <div class="text-center">
-                <a href="/login" class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
+                <a href="<?= BASE_URL ?>/login" class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
                     Iniciar Sesión
                     <i class="fas fa-arrow-right ml-2"></i>
                 </a>
@@ -202,7 +202,7 @@
 
         <!-- Enlace volver -->
         <div class="mt-6 text-center">
-            <a href="/" class="inline-flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors group">
+            <a href="<?= BASE_URL ?>/" class="inline-flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors group">
                 <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
                 Volver al Inicio
             </a>

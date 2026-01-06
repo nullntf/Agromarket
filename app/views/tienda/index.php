@@ -91,21 +91,21 @@
 <nav class="sticky top-0 z-50 bg-[#6b7a2a] text-white shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-            <a href="/" class="flex items-center gap-2">
+            <a href="<?= BASE_URL ?>/" class="flex items-center gap-2">
                 <i class="fas fa-seedling text-[#e6efd8] text-2xl"></i>
                 <span class="text-xl font-extrabold tracking-wide">AgroCompra</span>
             </a>
 
             <!-- Desktop Actions -->
             <div class="hidden md:flex items-center gap-3">
-                <a href="/" class="inline-flex items-center px-3 py-2 text-sm font-semibold hover:opacity-90 transition">
+                <a href="<?= BASE_URL ?>/" class="inline-flex items-center px-3 py-2 text-sm font-semibold hover:opacity-90 transition">
                     <i class="fas fa-home mr-2"></i><?php _e('home.nav.home', 'Inicio'); ?>
                 </a>
 
                 <!-- Language Switcher -->
                 <?php include __DIR__ . '/../partials/language_switcher.php'; ?>
 
-                <a href="/login"
+                <a href="<?= BASE_URL ?>/login"
                    class="inline-flex items-center px-5 py-2.5 bg-[#e6efd8] text-[#334015] font-extrabold rounded-full hover:brightness-95 transition">
                     <i class="fas fa-sign-in-alt mr-2"></i><?php _e('home.nav.login', 'Iniciar Sesión'); ?>
                 </a>
@@ -125,14 +125,14 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
         <div class="px-4 pt-2 pb-6 space-y-3">
-            <a href="/" class="mobile-menu-link">
+            <a href="<?= BASE_URL ?>/" class="mobile-menu-link">
                 <i class="fas fa-home"></i>
                 <span><?php _e('home.nav.home', 'Inicio'); ?></span>
             </a>
             
             <div class="h-px bg-white/20 my-3"></div>
             
-            <a href="/login" class="block w-full px-5 py-3 bg-[#e6efd8] text-[#334015] font-bold rounded-full hover:brightness-95 transition text-center">
+            <a href="<?= BASE_URL ?>/login" class="block w-full px-5 py-3 bg-[#e6efd8] text-[#334015] font-bold rounded-full hover:brightness-95 transition text-center">
                 <?php _e('home.nav.login', 'Iniciar Sesión'); ?>
             </a>
             
@@ -201,7 +201,7 @@
             </button>
         </div>
 
-        <form id="filterForm" method="GET" action="/tienda" class="space-y-5">
+        <form id="filterForm" method="GET" action="<?= BASE_URL ?>/tienda" class="space-y-5">
             <div>
                 <label for="search" class="block text-sm font-semibold text-gray-700 mb-2">
                     <i class="fas fa-search text-gray-400 mr-2"></i><?php _e('store.filters.search', 'Búsqueda General'); ?>
@@ -296,7 +296,7 @@
             <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
             <h3 class="text-xl font-extrabold text-gray-800 mb-2">No se encontraron productos</h3>
             <p class="text-gray-500 mb-6">Intenta ajustar los filtros de búsqueda</p>
-            <a href="/tienda"
+            <a href="<?= BASE_URL ?>/tienda"
                class="inline-flex items-center px-6 py-3 bg-[#6b7a2a] hover:brightness-95 text-white font-extrabold rounded-xl transition">
                 <i class="fas fa-redo mr-2"></i>
                 Ver Todos los Productos
@@ -327,7 +327,7 @@
                     <!-- Imagen -->
                     <div class="h-52 bg-gray-100 relative overflow-hidden">
                         <?php if ($product['main_photo']): ?>
-                            <img src="/uploads/products/<?= htmlspecialchars($product['main_photo']) ?>"
+                            <img src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($product['main_photo']) ?>"
                                  alt="<?= htmlspecialchars($product['name']) ?>"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         <?php else: ?>
@@ -369,7 +369,7 @@
 
                         <!-- Botones -->
                         <div class="space-y-2">
-                            <a href="/tienda/product/<?= $product['id'] ?>"
+                            <a href="<?= BASE_URL ?>/tienda/product/<?= $product['id'] ?>"
                                class="block w-full text-center bg-[#1a1f12] hover:bg-[#14180f] text-white py-2.5 px-4 rounded-xl transition font-semibold">
                                 <i class="fas fa-eye mr-2"></i>Ver Detalles
                             </a>

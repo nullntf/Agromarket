@@ -30,7 +30,7 @@
                         <i class="fas fa-user-edit text-green-600 text-xl"></i>
                         <h1 class="text-xl font-bold text-gray-900">Editar Perfil</h1>
                     </div>
-                    <a href="/producer/profile" class="inline-flex items-center space-x-2 text-sm text-gray-600 hover:text-green-600 transition-colors">
+                    <a href="<?= BASE_URL ?>/producer/profile" class="inline-flex items-center space-x-2 text-sm text-gray-600 hover:text-green-600 transition-colors">
                         <i class="fas fa-arrow-left"></i>
                         <span class="hidden sm:inline">Volver</span>
                     </a>
@@ -70,7 +70,7 @@
                             <label class="block text-sm font-semibold text-gray-700 mb-3">Foto de Perfil Actual</label>
                             <div class="flex items-center space-x-4">
                                 <?php if (!empty($user['profile_photo'])): ?>
-                                    <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
+                                    <img src="<?= BASE_URL ?>/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
                                          alt="Foto actual"
                                          class="w-20 h-20 rounded-full object-cover border-4 border-gray-200">
                                 <?php else: ?>
@@ -213,7 +213,7 @@
                             <i class="fas fa-save"></i>
                             <span>Guardar Cambios</span>
                         </button>
-                        <a href="/producer/profile" class="flex-1 inline-flex items-center justify-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 px-6 rounded-lg transition-colors font-semibold">
+                        <a href="<?= BASE_URL ?>/producer/profile" class="flex-1 inline-flex items-center justify-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 px-6 rounded-lg transition-colors font-semibold">
                             <i class="fas fa-times"></i>
                             <span>Cancelar</span>
                         </a>

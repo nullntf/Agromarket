@@ -30,7 +30,7 @@
                         <i class="fas fa-store text-green-600 text-xl"></i>
                         <h1 class="text-xl font-bold text-gray-900">Mi Negocio</h1>
                     </div>
-                    <a href="/producer" class="text-sm text-gray-600 hover:text-green-600 transition-colors flex items-center space-x-2">
+                    <a href="<?= BASE_URL ?>/producer" class="text-sm text-gray-600 hover:text-green-600 transition-colors flex items-center space-x-2">
                         <i class="fas fa-arrow-left"></i>
                         <span class="hidden sm:inline">Volver</span>
                     </a>
@@ -72,7 +72,7 @@
                     <!-- Business Info -->
                     <div class="px-6 pb-6">
                         <div class="flex justify-end pt-6 mb-6">
-                            <a href="/producer/business/edit" class="inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold">
+                            <a href="<?= BASE_URL ?>/producer/business/edit" class="inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold">
                                 <i class="fas fa-edit"></i>
                                 <span>Editar Negocio</span>
                             </a>
@@ -137,7 +137,7 @@
                             <h3 class="text-2xl font-bold text-gray-900 mb-1">Mis Productos</h3>
                             <p class="text-gray-600">Gestiona el catálogo de productos de tu negocio</p>
                         </div>
-                        <a href="/producer/business/products/create" class="inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold mt-4 sm:mt-0">
+                        <a href="<?= BASE_URL ?>/producer/business/products/create" class="inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold mt-4 sm:mt-0">
                             <i class="fas fa-plus"></i>
                             <span>Agregar Producto</span>
                         </a>
@@ -150,7 +150,7 @@
                             <!-- Product Image -->
                             <div class="relative h-48 bg-gray-100">
                                 <?php if (!empty($product['main_photo'])): ?>
-                                    <img src="/uploads/products/<?= htmlspecialchars($product['main_photo']) ?>" 
+                                    <img src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($product['main_photo']) ?>" 
                                          alt="<?= htmlspecialchars($product['name']) ?>"
                                          class="h-full w-full object-cover">
                                 <?php else: ?>
@@ -188,12 +188,12 @@
                                 
                                 <!-- Actions -->
                                 <div class="grid grid-cols-2 gap-2">
-                                    <a href="/producer/business/products/view/<?= $product['id'] ?>" 
+                                    <a href="<?= BASE_URL ?>/producer/business/products/view/<?= $product['id'] ?>" 
                                        class="inline-flex items-center justify-center space-x-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg transition-colors">
                                         <i class="fas fa-eye"></i>
                                         <span>Ver</span>
                                     </a>
-                                    <a href="/producer/business/products/edit/<?= $product['id'] ?>" 
+                                    <a href="<?= BASE_URL ?>/producer/business/products/edit/<?= $product['id'] ?>" 
                                        class="inline-flex items-center justify-center space-x-1 bg-yellow-600 hover:bg-yellow-700 text-white text-sm py-2 px-3 rounded-lg transition-colors">
                                         <i class="fas fa-edit"></i>
                                         <span>Editar</span>
@@ -229,7 +229,7 @@
                         </div>
                         <h4 class="text-xl font-bold text-gray-900 mb-2">No tienes productos</h4>
                         <p class="text-gray-600 mb-6">Comienza agregando tu primer producto para que los clientes puedan verlo</p>
-                        <a href="/producer/business/products/create" 
+                        <a href="<?= BASE_URL ?>/producer/business/products/create" 
                            class="inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold">
                             <i class="fas fa-plus"></i>
                             <span>Agregar Primer Producto</span>
@@ -247,7 +247,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">No tienes un negocio registrado</h3>
                     <p class="text-gray-600 mb-6">Para comenzar a vender tus productos, necesitas crear tu negocio primero</p>
-                    <a href="/producer/business/create" class="inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg transition-colors font-semibold text-lg">
+                    <a href="<?= BASE_URL ?>/producer/business/create" class="inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg transition-colors font-semibold text-lg">
                         <i class="fas fa-plus-circle"></i>
                         <span>Crear Mi Negocio</span>
                     </a>

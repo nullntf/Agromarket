@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para API REST
 
 require_once '../core/BaseController.php';

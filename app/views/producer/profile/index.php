@@ -30,7 +30,7 @@
                         <i class="fas fa-user-circle text-green-600 text-xl"></i>
                         <h1 class="text-xl font-bold text-gray-900">Mi Perfil</h1>
                     </div>
-                    <a href="/producer" class="text-sm text-gray-600 hover:text-green-600 transition-colors flex items-center space-x-2">
+                    <a href="<?= BASE_URL ?>/producer" class="text-sm text-gray-600 hover:text-green-600 transition-colors flex items-center space-x-2">
                         <i class="fas fa-arrow-left"></i>
                         <span class="hidden sm:inline">Volver</span>
                     </a>
@@ -62,7 +62,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between -mt-16 mb-6">
                             <div class="flex flex-col sm:flex-row items-center sm:items-end space-y-4 sm:space-y-0 sm:space-x-4">
                                 <?php if (!empty($user['profile_photo'])): ?>
-                                    <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
+                                    <img src="<?= BASE_URL ?>/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
                                          alt="Foto de perfil"
                                          class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-lg">
                                 <?php else: ?>
@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                             
-                            <a href="/producer/profile/edit" class="inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold">
+                            <a href="<?= BASE_URL ?>/producer/profile/edit" class="inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold">
                                 <i class="fas fa-edit"></i>
                                 <span>Editar Perfil</span>
                             </a>

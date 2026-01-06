@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para la gestión de usuarios
 
 require_once '../core/BaseController.php';
@@ -64,8 +65,7 @@ class UserController extends BaseController {
         // Session::start();
         $currentUser = Session::getCurrentUser();
         if (!$currentUser) {
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         // Admin solo puede crear tokens para producer
@@ -113,8 +113,7 @@ class UserController extends BaseController {
 
         // Solo master puede editar
         if ($currentUser['rol'] !== 'master') {
-            header('Location: /admin/users?success=' . urlencode('No tienes permisos para editar usuarios.'));
-            exit;
+            redirect('/admin/users?success=' . urlencode('No tienes permisos para editar usuarios.'));
         }
 
         $userModel = new UserModel();
@@ -125,14 +124,12 @@ class UserController extends BaseController {
         }
 
         if (!$id) {
-            header('Location: /admin/users');
-            exit;
+            redirect('/admin/users');
         }
 
         $user = $userModel->getById($id);
         if (!$user) {
-            header('Location: /admin/users');
-            exit;
+            redirect('/admin/users');
         }
 
         $this->render('admin/users/edit', ['user' => $user]);
@@ -145,8 +142,7 @@ class UserController extends BaseController {
 
         // Solo master puede editar
         if ($currentUser['rol'] !== 'master') {
-            header('Location: /admin/users?success=' . urlencode('No tienes permisos para editar usuarios.'));
-            exit;
+            redirect('/admin/users?success=' . urlencode('No tienes permisos para editar usuarios.'));
         }
 
         $name = trim($_POST['name'] ?? '');
@@ -173,16 +169,14 @@ class UserController extends BaseController {
             'updated_at' => date('Y-m-d H:i:s')
         ]);
 
-        header('Location: /admin/users?success=' . urlencode('Usuario actualizado exitosamente.'));
-        exit;
+        redirect('/admin/users?success=' . urlencode('Usuario actualizado exitosamente.'));
     }
 
     public function view($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/users');
-            exit;
+            redirect('/admin/users');
         }
 
         require_once '../app/models/UserModel.php';
@@ -195,14 +189,12 @@ class UserController extends BaseController {
         $user = $userModel->getById($id);
 
         if (!$user) {
-            header('Location: /admin/users');
-            exit;
+            redirect('/admin/users');
         }
 
         // Admin no puede ver masters ni otros admins
         if ($currentUser['rol'] === 'admin' && ($user['rol'] === 'master' || $user['rol'] === 'admin')) {
-            header('Location: /admin/users?success=' . urlencode('No tienes permisos para ver este usuario.'));
-            exit;
+            redirect('/admin/users?success=' . urlencode('No tienes permisos para ver este usuario.'));
         }
 
         $this->render('admin/users/view', ['user' => $user]);
@@ -212,8 +204,7 @@ class UserController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/users');
-            exit;
+            redirect('/admin/users');
         }
 
         require_once '../app/models/UserModel.php';
@@ -226,30 +217,26 @@ class UserController extends BaseController {
         $user = $userModel->getById($id);
 
         if (!$user) {
-            header('Location: /admin/users');
-            exit;
+            redirect('/admin/users');
         }
 
         // Admin solo puede cambiar estado de producers
         if ($currentUser['rol'] === 'admin' && $user['rol'] !== 'producer') {
-            header('Location: /admin/users?success=' . urlencode('No tienes permisos para cambiar el estado de este usuario.'));
-            exit;
+            redirect('/admin/users?success=' . urlencode('No tienes permisos para cambiar el estado de este usuario.'));
         }
 
         $newStatus = $user['status'] === 'active' ? 'inactive' : 'active';
         $userModel->update($id, ['status' => $newStatus]);
 
         $message = $newStatus === 'active' ? 'Usuario activado exitosamente.' : 'Usuario inactivado exitosamente.';
-        header('Location: /admin/users?success=' . urlencode($message));
-        exit;
+        redirect('/admin/users?success=' . urlencode($message));
     }
 
     public function delete($id = null) {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/users');
-            exit;
+            redirect('/admin/users');
         }
 
         require_once '../app/models/UserModel.php';
@@ -260,22 +247,19 @@ class UserController extends BaseController {
 
         // Solo master puede eliminar
         if ($currentUser['rol'] !== 'master') {
-            header('Location: /admin/users?success=' . urlencode('No tienes permisos para eliminar usuarios.'));
-            exit;
+            redirect('/admin/users?success=' . urlencode('No tienes permisos para eliminar usuarios.'));
         }
 
         $userModel = new UserModel();
         $user = $userModel->getById($id);
 
         if (!$user) {
-            header('Location: /admin/users');
-            exit;
+            redirect('/admin/users');
         }
 
         // No permitir eliminar al usuario actual
         if ($user['id'] == $currentUser['id']) {
-            header('Location: /admin/users?success=' . urlencode('No puedes eliminarte a ti mismo.'));
-            exit;
+            redirect('/admin/users?success=' . urlencode('No puedes eliminarte a ti mismo.'));
         }
 
         // Eliminar tokens creados por este usuario primero
@@ -286,7 +270,6 @@ class UserController extends BaseController {
         // Ahora eliminar el usuario
         $userModel->delete($id);
 
-        header('Location: /admin/users?success=' . urlencode('Usuario eliminado exitosamente.'));
-        exit;
+        redirect('/admin/users?success=' . urlencode('Usuario eliminado exitosamente.'));
     }
 }

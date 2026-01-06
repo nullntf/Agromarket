@@ -1,10 +1,13 @@
 <?php
+require_once '../config/app.php';
 // Controlador para la página de login
 
 require_once '../core/BaseController.php';
 
-class LoginController extends BaseController {
-    public function index() {
+class LoginController extends BaseController
+{
+    public function index()
+    {
         require_once '../helpers/Session.php';
         // Session::start();
 
@@ -12,12 +15,12 @@ class LoginController extends BaseController {
         if (isset($_GET['expired']) && $_GET['expired'] == '1') {
             $expiredMessage = 'Tu sesión ha expirado por inactividad. Por favor inicia sesión nuevamente.';
         }
-        
+
         // Verificar si se cerró sesión
         if (isset($_GET['logged_out']) && $_GET['logged_out'] == '1') {
             $logoutMessage = 'Has cerrado sesión exitosamente.';
         }
-        
+
         // Verificar si el usuario está inactivo
         if (isset($_GET['inactive']) && $_GET['inactive'] == '1') {
             $expiredMessage = 'Tu cuenta ha sido desactivada. Contacta al administrador.';
@@ -33,7 +36,8 @@ class LoginController extends BaseController {
         $this->render('login/index', ['csrf_token' => $csrfToken, 'expired_message' => $expiredMessage ?? null, 'logout_message' => $logoutMessage ?? null]);
     }
 
-    private function handleLogin() {
+    private function handleLogin()
+    {
         require_once '../helpers/Session.php';
         require_once '../helpers/RateLimiter.php';
         require_once '../app/models/UserModel.php';
@@ -78,13 +82,13 @@ class LoginController extends BaseController {
         if (!$user || !$userModel->verifyPassword($password, $user['password'])) {
             // Registrar intento fallido para este email
             $attemptResult = RateLimiter::recordFailedAttempt($email);
-            
+
             if ($attemptResult['locked']) {
                 $error = "Demasiados intentos fallidos. Esta cuenta ha sido bloqueada temporalmente por {$attemptResult['lockout_minutes']} minutos.";
             } else {
                 $error = "Credenciales incorrectas. Te quedan {$attemptResult['attempts_remaining']} intento(s) para esta cuenta.";
             }
-            
+
             $csrfToken = Session::getCsrfToken();
             $this->render('login/index', ['error' => $error, 'csrf_token' => $csrfToken]);
             return;
@@ -93,13 +97,13 @@ class LoginController extends BaseController {
         if ($user['status'] !== 'active') {
             // También registrar como intento fallido para este email
             $attemptResult = RateLimiter::recordFailedAttempt($email);
-            
+
             if ($attemptResult['locked']) {
                 $error = "Demasiados intentos fallidos. Esta cuenta ha sido bloqueada temporalmente por {$attemptResult['lockout_minutes']} minutos.";
             } else {
                 $error = 'Cuenta inactiva. Contacta al administrador.';
             }
-            
+
             $csrfToken = Session::getCsrfToken();
             $this->render('login/index', ['error' => $error, 'csrf_token' => $csrfToken]);
             return;
@@ -114,21 +118,18 @@ class LoginController extends BaseController {
         switch ($user['rol']) {
             case 'admin':
             case 'master':
-                header('Location: /admin');
-                break;
+                redirect('/admin');
             case 'producer':
-                header('Location: /producer');
-                break;
+                redirect('/producer');
             default:
-                header('Location: /');
+                redirect('/');
         }
-        exit;
     }
 
-    public function logout() {
+    public function logout()
+    {
         require_once '../helpers/Session.php';
         Session::logout();
-        header('Location: /login?logged_out=1');
-        exit;
+        redirect('/login?logged_out=1');
     }
 }

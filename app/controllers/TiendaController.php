@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para la tienda pública
 
 require_once '../core/BaseController.php';
@@ -76,8 +77,7 @@ class TiendaController extends BaseController {
     
     public function product($id = null) {
         if (!$id) {
-            header('Location: /tienda');
-            exit;
+            redirect('/tienda');
         }
         
         $productModel = new ProductModel();
@@ -85,8 +85,7 @@ class TiendaController extends BaseController {
         
         // Verificar que el producto exista y esté activo
         if (!$product || $product['status'] !== 'active' || $product['business_status'] !== 'active') {
-            header('Location: /tienda?error=' . urlencode('Producto no disponible.'));
-            exit;
+            redirect('/tienda?error=' . urlencode('Producto no disponible.'));
         }
         
         $photoModel = new ProductPhotoModel();
@@ -108,8 +107,7 @@ class TiendaController extends BaseController {
     
     public function business($id = null) {
         if (!$id) {
-            header('Location: /tienda');
-            exit;
+            redirect('/tienda');
         }
         
         $businessModel = new BusinessModel();
@@ -117,8 +115,7 @@ class TiendaController extends BaseController {
         
         // Verificar que el negocio exista y esté activo
         if (!$business || $business['status'] !== 'active') {
-            header('Location: /tienda?error=' . urlencode('Negocio no disponible.'));
-            exit;
+            redirect('/tienda?error=' . urlencode('Negocio no disponible.'));
         }
         
         $productModel = new ProductModel();

@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para configuración de perfil de administradores
 
 require_once '../core/BaseController.php';
@@ -183,7 +184,6 @@ class SettingsController extends BaseController {
         // Actualizar sesión con los nuevos datos
         Session::updateCurrentUser($sessionUpdate);
 
-        header('Location: /admin/settings?success=' . urlencode('Perfil actualizado exitosamente.'));
-        exit;
+        redirect('/admin/settings?success=' . urlencode('Perfil actualizado exitosamente.'));
     }
 }

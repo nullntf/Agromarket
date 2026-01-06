@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para gestión de negocios por administradores
 
 require_once '../core/BaseController.php';
@@ -30,8 +31,7 @@ class AdminBusinessController extends BaseController {
         AuthMiddleware::checkAdminAccess();
 
         if (!$id) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
 
         
@@ -42,8 +42,7 @@ class AdminBusinessController extends BaseController {
         $business = $businessModel->getById($id);
         
         if (!$business) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
         
         $productModel = new ProductModel();
@@ -68,8 +67,7 @@ class AdminBusinessController extends BaseController {
         AuthMiddleware::checkAdminAccess(); // Admin y Master pueden cambiar estado
 
         if (!$id) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
 
         
@@ -78,23 +76,20 @@ class AdminBusinessController extends BaseController {
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Session::verifyCsrfToken($csrfToken)) {
-            header('Location: /admin/business?error=' . urlencode('Token CSRF inválido.'));
-            exit;
+            redirect('/admin/business?error=' . urlencode('Token CSRF inválido.'));
         }
         
         $businessModel = new BusinessModel();
         $businessModel->toggleStatus($id);
         
-        header('Location: /admin/business?success=' . urlencode('Estado del negocio actualizado.'));
-        exit;
+        redirect('/admin/business?success=' . urlencode('Estado del negocio actualizado.'));
     }
 
     public function delete($id = null) {
         AuthMiddleware::checkMasterAccess(); // Solo master puede eliminar
 
         if (!$id) {
-            header('Location: /admin/business');
-            exit;
+            redirect('/admin/business');
         }
 
         
@@ -103,14 +98,12 @@ class AdminBusinessController extends BaseController {
         // Verificar CSRF token
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Session::verifyCsrfToken($csrfToken)) {
-            header('Location: /admin/business?error=' . urlencode('Token CSRF inválido.'));
-            exit;
+            redirect('/admin/business?error=' . urlencode('Token CSRF inválido.'));
         }
         
         $businessModel = new BusinessModel();
         $businessModel->delete($id);
         
-        header('Location: /admin/business?success=' . urlencode('Negocio eliminado exitosamente.'));
-        exit;
+        redirect('/admin/business?success=' . urlencode('Negocio eliminado exitosamente.'));
     }
 }

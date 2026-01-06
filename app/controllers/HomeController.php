@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para la página de inicio
 
 require_once '../core/BaseController.php';

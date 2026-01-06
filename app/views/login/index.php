@@ -25,7 +25,7 @@
     <div class="w-full max-w-md">
         <!-- Logo y Título -->
         <div class="text-center mb-8">
-            <a href="/" class="inline-flex items-center space-x-2 mb-6">
+            <a href="<?= BASE_URL ?>/" class="inline-flex items-center space-x-2 mb-6">
                 <i class="fas fa-seedling text-green-600 text-2xl"></i>
                 <span class="text-2xl font-bold text-gray-900">AgroCompra</span>
             </a>
@@ -59,7 +59,7 @@
             <?php endif; ?>
 
             <!-- Formulario -->
-            <form method="POST" action="/login" id="loginForm" class="space-y-6" novalidate>
+            <form method="POST" action="<?= BASE_URL ?>/login" id="loginForm" class="space-y-6" novalidate>
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token ?? '') ?>">
                 
                 <!-- Email -->
@@ -128,7 +128,7 @@
                     <div class="text-sm text-blue-900">
                         <p class="font-semibold mb-1">¿Necesitas una cuenta?</p>
                         <p class="text-blue-700">Contacta con la Unidad de Agricultura y Ganadería para registrarte como productor.</p>
-                        <a href="/registro/informacion" class="inline-flex items-center mt-2 text-blue-600 hover:text-blue-700 font-medium">
+                        <a href="<?= BASE_URL ?>/registro/informacion" class="inline-flex items-center mt-2 text-blue-600 hover:text-blue-700 font-medium">
                             Ver más información
                             <i class="fas fa-arrow-right ml-1 text-xs"></i>
                         </a>
@@ -139,7 +139,7 @@
 
         <!-- Enlaces adicionales -->
         <div class="mt-6 text-center">
-            <a href="/" class="inline-flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors group">
+            <a href="<?= BASE_URL ?>/" class="inline-flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors group">
                 <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
                 Volver al Inicio
             </a>

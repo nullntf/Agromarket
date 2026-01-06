@@ -24,7 +24,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <h1 class="text-xl font-bold text-gray-100">Editar Mi Perfil</h1>
-                <a href="/admin/settings" class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors border border-gray-700">
+                <a href="<?= BASE_URL ?>/admin/settings" class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors border border-gray-700">
                     <i class="fas fa-arrow-left"></i>
                     <span class="hidden sm:inline">Volver</span>
                 </a>
@@ -56,7 +56,7 @@
                     <label class="block text-sm font-medium text-gray-300 mb-3">Foto de Perfil Actual</label>
                     <div class="flex items-center">
                         <?php if (!empty($user['profile_photo'])): ?>
-                            <img src="/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
+                            <img src="<?= BASE_URL ?>/uploads/profiles/<?= htmlspecialchars($user['profile_photo']) ?>?t=<?= time() ?>"
                                  alt="Foto actual"
                                  class="w-20 h-20 rounded-full object-cover border-4 border-gray-800">
                         <?php else: ?>
@@ -183,7 +183,7 @@
                         <i class="fas fa-save"></i>
                         <span>Guardar Cambios</span>
                     </button>
-                    <a href="/admin/settings" class="flex-1 inline-flex items-center justify-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 py-3 px-6 rounded-lg transition-colors border border-gray-700 font-medium">
+                    <a href="<?= BASE_URL ?>/admin/settings" class="flex-1 inline-flex items-center justify-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 py-3 px-6 rounded-lg transition-colors border border-gray-700 font-medium">
                         <i class="fas fa-times"></i>
                         <span>Cancelar</span>
                     </a>

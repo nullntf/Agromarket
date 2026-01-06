@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador para gestión de productos de productores
 
 require_once '../core/BaseController.php';
@@ -28,8 +29,7 @@ class ProducerProductController extends BaseController {
         $business = $businessModel->getByProducerId($currentUser['id']);
         
         if (!$business) {
-            header('Location: /producer/business?success=' . urlencode('No tienes un negocio registrado.'));
-            exit;
+            redirect('/producer/business?success=' . urlencode('No tienes un negocio registrado.'));
         }
         
         $categoryModel = new CategoryModel();
@@ -57,8 +57,7 @@ class ProducerProductController extends BaseController {
         $business = $businessModel->getByProducerId($producerId);
         
         if (!$business) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         $name = trim($_POST['name'] ?? '');
@@ -125,16 +124,14 @@ class ProducerProductController extends BaseController {
             }
         }
 
-        header('Location: /producer/business?success=' . urlencode('Producto creado exitosamente.'));
-        exit;
+        redirect('/producer/business?success=' . urlencode('Producto creado exitosamente.'));
     }
 
     public function edit($id = null) {
         AuthMiddleware::checkProducerAccess();
 
         if (!$id) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         
@@ -150,8 +147,7 @@ class ProducerProductController extends BaseController {
 
         $product = $productModel->getById($id);
         if (!$product) {
-            header('Location: /producer/business?success=' . urlencode('Producto no encontrado.'));
-            exit;
+            redirect('/producer/business?success=' . urlencode('Producto no encontrado.'));
         }
         
         // Verificar que el producto pertenece al producer
@@ -159,8 +155,7 @@ class ProducerProductController extends BaseController {
         $business = $businessModel->getByProducerId($currentUser['id']);
         
         if (!$business || $product['business_id'] != $business['id']) {
-            header('Location: /producer/business?success=' . urlencode('No tienes permiso para editar este producto.'));
-            exit;
+            redirect('/producer/business?success=' . urlencode('No tienes permiso para editar este producto.'));
         }
 
         $categoryModel = new CategoryModel();
@@ -198,8 +193,7 @@ class ProducerProductController extends BaseController {
         $business = $businessModel->getByProducerId($producerId);
         
         if (!$business || $product['business_id'] != $business['id']) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         $name = trim($_POST['name'] ?? '');
@@ -267,16 +261,14 @@ class ProducerProductController extends BaseController {
             }
         }
 
-        header('Location: /producer/business?success=' . urlencode('Producto actualizado exitosamente.'));
-        exit;
+        redirect('/producer/business?success=' . urlencode('Producto actualizado exitosamente.'));
     }
 
     public function view($id = null) {
         AuthMiddleware::checkProducerAccess();
 
         if (!$id) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         
@@ -287,8 +279,7 @@ class ProducerProductController extends BaseController {
         $product = $productModel->getById($id);
         
         if (!$product) {
-            header('Location: /producer/business?success=' . urlencode('Producto no encontrado.'));
-            exit;
+            redirect('/producer/business?success=' . urlencode('Producto no encontrado.'));
         }
         
         // Verificar que el producto pertenece al producer
@@ -296,8 +287,7 @@ class ProducerProductController extends BaseController {
         $business = $businessModel->getByProducerId($currentUser['id']);
         
         if (!$business || $product['business_id'] != $business['id']) {
-            header('Location: /producer/business?success=' . urlencode('No tienes permiso para ver este producto.'));
-            exit;
+            redirect('/producer/business?success=' . urlencode('No tienes permiso para ver este producto.'));
         }
         
         $photoModel = new ProductPhotoModel();
@@ -313,8 +303,7 @@ class ProducerProductController extends BaseController {
         AuthMiddleware::checkProducerAccess();
 
         if (!$id) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         
@@ -325,8 +314,7 @@ class ProducerProductController extends BaseController {
         $product = $productModel->getById($id);
         
         if (!$product) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
         
         // Verificar que el producto pertenece al producer
@@ -334,14 +322,12 @@ class ProducerProductController extends BaseController {
         $business = $businessModel->getByProducerId($currentUser['id']);
         
         if (!$business || $product['business_id'] != $business['id']) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         // Verificar si fue desactivado por un administrador
         if ($product['disabled_by_admin'] == 1 && $product['status'] === 'inactive') {
-            header('Location: /producer/business?error=' . urlencode('Este producto fue desactivado por un administrador. No puedes activarlo.'));
-            exit;
+            redirect('/producer/business?error=' . urlencode('Este producto fue desactivado por un administrador. No puedes activarlo.'));
         }
 
         // Si el productor está activando el producto, limpiar la marca de admin
@@ -354,16 +340,14 @@ class ProducerProductController extends BaseController {
             $productModel->toggleStatus($id);
         }
 
-        header('Location: /producer/business?success=' . urlencode('Estado del producto actualizado.'));
-        exit;
+        redirect('/producer/business?success=' . urlencode('Estado del producto actualizado.'));
     }
 
     public function delete($id = null) {
         AuthMiddleware::checkProducerAccess();
 
         if (!$id) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         
@@ -374,8 +358,7 @@ class ProducerProductController extends BaseController {
         $product = $productModel->getById($id);
         
         if (!$product) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
         
         // Verificar que el producto pertenece al producer
@@ -383,22 +366,19 @@ class ProducerProductController extends BaseController {
         $business = $businessModel->getByProducerId($currentUser['id']);
         
         if (!$business || $product['business_id'] != $business['id']) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         $productModel->delete($id);
 
-        header('Location: /producer/business?success=' . urlencode('Producto eliminado exitosamente.'));
-        exit;
+        redirect('/producer/business?success=' . urlencode('Producto eliminado exitosamente.'));
     }
 
     public function deletePhoto($id = null) {
         AuthMiddleware::checkProducerAccess();
 
         if (!$id) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         
@@ -409,8 +389,7 @@ class ProducerProductController extends BaseController {
         $photo = $photoModel->getById($id);
         
         if (!$photo) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
         
         // Verificar que la foto pertenece a un producto del producer
@@ -421,8 +400,7 @@ class ProducerProductController extends BaseController {
         $business = $businessModel->getByProducerId($currentUser['id']);
         
         if (!$business || !$product || $product['business_id'] != $business['id']) {
-            header('Location: /producer/business');
-            exit;
+            redirect('/producer/business');
         }
 
         // Eliminar archivo físico
@@ -433,7 +411,6 @@ class ProducerProductController extends BaseController {
         // Eliminar registro de base de datos
         $photoModel->delete($id);
 
-        header('Location: /producer/business/products/edit/' . $photo['product_id'] . '?success=' . urlencode('Foto eliminada exitosamente.'));
-        exit;
+        redirect('/producer/business/products/edit/' . $photo['product_id'] . '?success=' . urlencode('Foto eliminada exitosamente.'));
     }
 }

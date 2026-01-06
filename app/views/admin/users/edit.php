@@ -24,7 +24,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <h1 class="text-xl font-bold text-gray-100">Editar Usuario</h1>
-                <a href="/admin/users" class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors border border-gray-700">
+                <a href="<?= BASE_URL ?>/admin/users" class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors border border-gray-700">
                     <i class="fas fa-arrow-left"></i>
                     <span class="hidden sm:inline">Volver</span>
                 </a>
@@ -113,7 +113,7 @@
             <div class="bg-gray-900 border border-gray-800 rounded-xl p-12 text-center max-w-md mx-auto">
                 <i class="fas fa-user-slash text-5xl text-gray-700 mb-4"></i>
                 <p class="text-gray-400 mb-6">Usuario no encontrado.</p>
-                <a href="/admin/users" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
+                <a href="<?= BASE_URL ?>/admin/users" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
                     <i class="fas fa-arrow-left"></i>
                     <span>Volver a Usuarios</span>
                 </a>

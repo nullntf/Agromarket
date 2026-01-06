@@ -30,7 +30,7 @@
                         <i class="fas fa-edit text-green-600 text-xl"></i>
                         <h1 class="text-xl font-bold text-gray-900">Editar Producto</h1>
                     </div>
-                    <a href="/producer/business" class="text-sm text-gray-600 hover:text-green-600 transition-colors flex items-center space-x-2">
+                    <a href="<?= BASE_URL ?>/producer/business" class="text-sm text-gray-600 hover:text-green-600 transition-colors flex items-center space-x-2">
                         <i class="fas fa-arrow-left"></i>
                         <span class="hidden sm:inline">Volver</span>
                     </a>
@@ -83,7 +83,7 @@
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                             <?php foreach ($photos as $photo): ?>
                             <div class="relative group existing-photo">
-                                <img src="/uploads/products/<?= htmlspecialchars($photo['photo']) ?>" 
+                                <img src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($photo['photo']) ?>" 
                                      alt="Foto del producto" 
                                      class="w-full h-32 object-cover rounded-lg border-2 border-gray-200">
                                 <button type="button"
@@ -209,7 +209,7 @@
                             <i class="fas fa-save"></i>
                             <span>Guardar Cambios</span>
                         </button>
-                        <a href="/producer/business" class="flex-1 inline-flex items-center justify-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 px-6 rounded-lg transition-colors font-semibold">
+                        <a href="<?= BASE_URL ?>/producer/business" class="flex-1 inline-flex items-center justify-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 px-6 rounded-lg transition-colors font-semibold">
                             <i class="fas fa-times"></i>
                             <span>Cancelar</span>
                         </a>

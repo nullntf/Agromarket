@@ -62,33 +62,33 @@
     <nav class="flex-1 p-4 overflow-y-auto">
         <ul class="space-y-1">
             <li>
-                <a href="/admin" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
+                <a href="<?= BASE_URL ?>/admin" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
                     <i class="fas fa-chart-line text-lg group-hover:scale-110 transition-transform"></i>
                     <span><?php _e('dashboard'); ?></span>
                 </a>
             </li>
             <li>
-                <a href="/admin/users" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
+                <a href="<?= BASE_URL ?>/admin/users" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
                     <i class="fas fa-users text-lg group-hover:scale-110 transition-transform"></i>
                     <span><?php _e('admin.users.title'); ?></span>
                 </a>
             </li>
             <?php if ($isMaster): ?>
             <li>
-                <a href="/admin/categories" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
+                <a href="<?= BASE_URL ?>/admin/categories" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
                     <i class="fas fa-tags text-lg group-hover:scale-110 transition-transform"></i>
                     <span><?php _e('admin.categories.title'); ?></span>
                 </a>
             </li>
             <?php endif; ?>
             <li>
-                <a href="/admin/business" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
+                <a href="<?= BASE_URL ?>/admin/business" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
                     <i class="fas fa-store text-lg group-hover:scale-110 transition-transform"></i>
                     <span class="font-medium">Negocios</span>
                 </a>
             </li>
             <li>
-                <a href="/admin/settings" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
+                <a href="<?= BASE_URL ?>/admin/settings" class="flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-blue-400 transition-all duration-200 group">
                     <i class="fas fa-cog text-lg group-hover:scale-110 transition-transform"></i>
                     <span><?php _e('admin.settings.title'); ?></span>
                 </a>
@@ -103,7 +103,7 @@
             <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider px-4 mb-2">Accesos Rápidos</p>
             <ul class="space-y-1">
                 <li>
-                    <a href="/tienda" target="_blank" class="flex items-center space-x-3 py-2 px-4 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-gray-200 transition-all duration-200">
+                    <a href="<?= BASE_URL ?>/tienda" target="_blank" class="flex items-center space-x-3 py-2 px-4 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-gray-200 transition-all duration-200">
                         <i class="fas fa-external-link-alt text-sm"></i>
                         <span>Ver Tienda</span>
                     </a>

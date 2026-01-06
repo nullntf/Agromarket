@@ -32,7 +32,7 @@
                 </button>
                 <h1 class="text-xl font-bold text-gray-100">Gestión de Categorías</h1>
                 <?php if ($isMaster): ?>
-                    <a href="/admin/categories/create" class="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium">
+                    <a href="<?= BASE_URL ?>/admin/categories/create" class="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium">
                         <i class="fas fa-plus"></i>
                         <span class="hidden sm:inline">Crear Categoría</span>
                     </a>
@@ -79,12 +79,12 @@
                                 <?php if ($isMaster): ?>
                                     <td class="px-4 py-4">
                                         <div class="flex items-center space-x-2">
-                                            <a href="/admin/categories/edit/<?= $category['id'] ?>" 
+                                            <a href="<?= BASE_URL ?>/admin/categories/edit/<?= $category['id'] ?>" 
                                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20 transition-colors" 
                                                title="Editar">
                                                 <i class="fas fa-edit text-sm"></i>
                                             </a>
-                                            <a href="/admin/categories/delete/<?= $category['id'] ?>" 
+                                            <a href="<?= BASE_URL ?>/admin/categories/delete/<?= $category['id'] ?>" 
                                                onclick="return confirm('¿Estás seguro de eliminar esta categoría?')" 
                                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors"
                                                title="Eliminar">

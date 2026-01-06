@@ -20,12 +20,12 @@
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="/" class="flex items-center space-x-2">
+                <a href="<?= BASE_URL ?>/" class="flex items-center space-x-2">
                     <i class="fas fa-seedling text-green-600 text-2xl"></i>
                     <span class="text-xl font-bold text-gray-900">AgroCompra</span>
                 </a>
                 <div class="flex items-center space-x-3">
-                    <a href="/" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                    <a href="<?= BASE_URL ?>/" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
                         <i class="fas fa-arrow-left mr-1"></i>
                         Volver al Inicio
                     </a>
@@ -33,7 +33,7 @@
                     <div class="hidden sm:block">
                         <?php include __DIR__ . '/../partials/language_switcher.php'; ?>
                     </div>
-                    <a href="/login" class="inline-flex items-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors">
+                    <a href="<?= BASE_URL ?>/login" class="inline-flex items-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors">
                         Iniciar Sesión
                     </a>
                 </div>
@@ -214,7 +214,7 @@
                     <i class="fab fa-whatsapp mr-2"></i>
                     Contactar por WhatsApp
                 </a>
-                <a href="/" class="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-xl border-2 border-gray-200 transition-all hover:border-blue-300 hover:shadow-lg">
+                <a href="<?= BASE_URL ?>/" class="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-xl border-2 border-gray-200 transition-all hover:border-blue-300 hover:shadow-lg">
                     <i class="fas fa-home mr-2"></i>
                     Volver al Inicio
                 </a>

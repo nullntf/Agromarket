@@ -24,7 +24,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <h1 class="text-xl font-bold text-gray-100">Detalle del Producto</h1>
-                <a href="/admin/business/view/<?= $product['business_id'] ?>" 
+                <a href="<?= BASE_URL ?>/admin/business/view/<?= $product['business_id'] ?>" 
                    class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors border border-gray-700">
                     <i class="fas fa-arrow-left"></i>
                     <span class="hidden sm:inline">Volver</span>
@@ -47,7 +47,7 @@
                         <?php if (!empty($photos)): ?>
                             <div class="mb-4 bg-gray-950/50 rounded-xl overflow-hidden border border-gray-800">
                                 <img id="mainImage" 
-                                     src="/uploads/products/<?= htmlspecialchars($photos[0]['photo']) ?>" 
+                                     src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($photos[0]['photo']) ?>" 
                                      alt="<?= htmlspecialchars($product['name']) ?>" 
                                      class="w-full h-96 object-cover">
                             </div>
@@ -57,7 +57,7 @@
                                 <?php foreach ($photos as $index => $photo): ?>
                                 <button onclick="changeMainImage('<?= htmlspecialchars($photo['photo']) ?>', this)" 
                                         class="thumbnail-btn rounded-lg overflow-hidden border-2 transition-all hover:border-blue-500 <?= $index === 0 ? 'border-blue-500' : 'border-gray-800' ?>">
-                                    <img src="/uploads/products/<?= htmlspecialchars($photo['photo']) ?>" 
+                                    <img src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($photo['photo']) ?>" 
                                          alt="Foto <?= $index + 1 ?>" 
                                          class="w-full h-20 object-cover">
                                 </button>
@@ -136,7 +136,7 @@
                         <!-- Acciones -->
                         <div class="space-y-3 pt-4 border-t border-gray-800">
                             <?php if ($user['rol'] === 'admin' || $user['rol'] === 'master'): ?>
-                            <form method="POST" action="/admin/business/products/toggle/<?= $product['id'] ?>">
+                            <form method="POST" action="<?= BASE_URL ?>/admin/business/products/toggle/<?= $product['id'] ?>">
                                 <?php
                                 require_once '../helpers/Session.php';
                                 // Session::start();

@@ -26,7 +26,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <h1 class="text-xl font-bold text-gray-100">Gestión de Usuarios</h1>
-                <a href="/admin/users/create" class="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium">
+                <a href="<?= BASE_URL ?>/admin/users/create" class="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium">
                     <i class="fas fa-plus"></i>
                     <span class="hidden sm:inline">Generar Token</span>
                 </a>
@@ -103,14 +103,14 @@
                                 </td>
                                 <td class="px-4 py-4">
                                     <div class="flex items-center space-x-2">
-                                        <a href="/admin/users/view/<?= $user['id'] ?>" 
+                                        <a href="<?= BASE_URL ?>/admin/users/view/<?= $user['id'] ?>" 
                                            class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 transition-colors" 
                                            title="Ver">
                                             <i class="fas fa-eye text-sm"></i>
                                         </a>
                                         
                                         <?php if ($canEdit): ?>
-                                            <a href="/admin/users/edit/<?= $user['id'] ?>" 
+                                            <a href="<?= BASE_URL ?>/admin/users/edit/<?= $user['id'] ?>" 
                                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20 transition-colors" 
                                                title="Editar">
                                                 <i class="fas fa-edit text-sm"></i>
@@ -126,7 +126,7 @@
                                         <?php endif; ?>
                                         
                                         <?php if ($canDelete): ?>
-                                            <a href="/admin/users/delete/<?= $user['id'] ?>" 
+                                            <a href="<?= BASE_URL ?>/admin/users/delete/<?= $user['id'] ?>" 
                                                onclick="return confirm('¿Estás seguro de eliminar este usuario?')" 
                                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors"
                                                title="Eliminar">

@@ -1,4 +1,5 @@
 <?php
+require_once '../config/app.php';
 // Controlador principal para productores
 
 require_once '../core/BaseController.php';

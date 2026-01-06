@@ -78,23 +78,23 @@
     <nav class="bg-[#6b7a2a] text-white sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="/" class="flex items-center space-x-2">
+                <a href="<?= BASE_URL ?>/" class="flex items-center space-x-2">
                     <i class="fas fa-seedling text-[#e6efd8] text-2xl"></i>
                     <span class="text-xl font-bold text-white">AgroCompra</span>
                 </a>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-3">
-                    <a href="/tienda" class="inline-flex items-center px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
+                    <a href="<?= BASE_URL ?>/tienda" class="inline-flex items-center px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
                         <i class="fas fa-store mr-2"></i><?= _e('store.title', 'Tienda') ?>
                     </a>
-                    <a href="/" class="inline-flex items-center px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
+                    <a href="<?= BASE_URL ?>/" class="inline-flex items-center px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
                         <i class="fas fa-home mr-2"></i><?= _e('breadcrumb_home', 'Inicio') ?>
                     </a>
                     <!-- Language Switcher -->
                     <?php include __DIR__ . '/../partials/language_switcher.php'; ?>
                     
-                    <a href="/login" class="inline-flex items-center px-5 py-2.5 bg-[#e6efd8] text-[#334015] font-extrabold rounded-full hover:brightness-95 transition">
+                    <a href="<?= BASE_URL ?>/login" class="inline-flex items-center px-5 py-2.5 bg-[#e6efd8] text-[#334015] font-extrabold rounded-full hover:brightness-95 transition">
                         <i class="fas fa-sign-in-alt mr-2"></i><?= _e('login', 'Iniciar Sesión') ?>
                     </a>
                 </div>
@@ -113,18 +113,18 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu md:hidden">
             <div class="px-4 pt-2 pb-6 space-y-3">
-                <a href="/tienda" class="mobile-menu-link">
+                <a href="<?= BASE_URL ?>/tienda" class="mobile-menu-link">
                     <i class="fas fa-store"></i>
                     <span><?= _e('store.title', 'Tienda') ?></span>
                 </a>
-                <a href="/" class="mobile-menu-link">
+                <a href="<?= BASE_URL ?>/" class="mobile-menu-link">
                     <i class="fas fa-home"></i>
                     <span><?= _e('breadcrumb_home', 'Inicio') ?></span>
                 </a>
                 
                 <div class="h-px bg-white/20 my-3"></div>
                 
-                <a href="/login" class="block w-full px-5 py-3 bg-[#e6efd8] text-[#334015] font-bold rounded-full hover:brightness-95 transition text-center">
+                <a href="<?= BASE_URL ?>/login" class="block w-full px-5 py-3 bg-[#e6efd8] text-[#334015] font-bold rounded-full hover:brightness-95 transition text-center">
                     <?= _e('login', 'Iniciar Sesión') ?>
                 </a>
             </div>
@@ -135,9 +135,9 @@
     <div class="bg-white border-b border-[#dfe8cf]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <nav class="flex items-center space-x-2 text-sm text-gray-600">
-                <a href="/" class="hover:text-[#6b7a2a] transition-colors"><?= _e('breadcrumb_home', 'Inicio') ?></a>
+                <a href="<?= BASE_URL ?>/" class="hover:text-[#6b7a2a] transition-colors"><?= _e('breadcrumb_home', 'Inicio') ?></a>
                 <i class="fas fa-chevron-right text-xs"></i>
-                <a href="/tienda" class="hover:text-[#6b7a2a] transition-colors"><?= _e('store.title', 'Tienda') ?></a>
+                <a href="<?= BASE_URL ?>/tienda" class="hover:text-[#6b7a2a] transition-colors"><?= _e('store.title', 'Tienda') ?></a>
                 <i class="fas fa-chevron-right text-xs"></i>
                 <span class="text-[#22310e] font-medium"><?= htmlspecialchars($product['name']) ?></span>
             </nav>
@@ -151,7 +151,7 @@
                 <?php if (!empty($photos)): ?>
                     <div class="bg-white rounded-2xl shadow-sm border border-[#dfe8cf] overflow-hidden">
                         <img id="mainImage" 
-                             src="/uploads/products/<?= htmlspecialchars($photos[0]['photo']) ?>" 
+                             src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($photos[0]['photo']) ?>" 
                              alt="<?= htmlspecialchars($product['name']) ?>" 
                              class="w-full h-96 object-cover">
                     </div>
@@ -160,7 +160,7 @@
                         <?php foreach ($photos as $index => $photo): ?>
                         <button type="button" onclick="changeMainImage(this.querySelector('img').src, this)" 
                                 class="thumbnail-btn bg-white rounded-lg shadow-sm border-2 overflow-hidden transition-all hover:border-[#6b7a2a] <?= $index === 0 ? 'border-[#6b7a2a]' : 'border-gray-200' ?>">
-                            <img src="/uploads/products/<?= htmlspecialchars($photo['photo']) ?>" 
+                            <img src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($photo['photo']) ?>" 
                                  alt="Foto <?= $index + 1 ?>" 
                                  class="w-full h-20 object-cover">
                         </button>
@@ -226,7 +226,7 @@
                             <i class="fas fa-building text-[#6b7a2a] w-5 mt-1 mr-3"></i>
                             <div>
                                 <p class="text-xs text-gray-500 uppercase tracking-wide mb-1"><?= _e('product.business', 'Negocio') ?></p>
-                                <a href="/tienda/business/<?= $business['id'] ?>" class="text-[#22310e] font-medium hover:text-[#6b7a2a] transition-colors">
+                                <a href="<?= BASE_URL ?>/tienda/business/<?= $business['id'] ?>" class="text-[#22310e] font-medium hover:text-[#6b7a2a] transition-colors">
                                     <?= htmlspecialchars($business['name']) ?>
                                 </a>
                             </div>

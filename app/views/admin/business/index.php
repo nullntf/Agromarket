@@ -108,14 +108,14 @@
                                     </td>
                                     <td class="px-4 py-4">
                                         <div class="flex items-center space-x-2">
-                                            <a href="/admin/business/view/<?= $business['id'] ?>" 
+                                            <a href="<?= BASE_URL ?>/admin/business/view/<?= $business['id'] ?>" 
                                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 transition-colors" 
                                                title="Ver">
                                                 <i class="fas fa-eye text-sm"></i>
                                             </a>
                                             
                                             <?php if ($user['rol'] === 'admin' || $user['rol'] === 'master'): ?>
-                                                <form method="POST" action="/admin/business/toggle/<?= $business['id'] ?>" class="inline">
+                                                <form method="POST" action="<?= BASE_URL ?>/admin/business/toggle/<?= $business['id'] ?>" class="inline">
                                                     <?php
                                                     require_once '../helpers/Session.php';
                                                     // Session::start();

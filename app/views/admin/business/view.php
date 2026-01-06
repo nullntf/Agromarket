@@ -24,7 +24,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <h1 class="text-xl font-bold text-gray-100">Detalle del Negocio</h1>
-                <a href="/admin/business" class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors border border-gray-700">
+                <a href="<?= BASE_URL ?>/admin/business" class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition-colors border border-gray-700">
                     <i class="fas fa-arrow-left"></i>
                     <span class="hidden sm:inline">Volver</span>
                 </a>
@@ -140,7 +140,7 @@
                             <div class="bg-gray-950/50 border border-gray-800 rounded-xl overflow-hidden hover:border-gray-700 transition-all group">
                                 <div class="h-48 bg-gray-900 relative overflow-hidden">
                                     <?php if ($product['main_photo']): ?>
-                                        <img src="/uploads/products/<?= htmlspecialchars($product['main_photo']) ?>" 
+                                        <img src="<?= BASE_URL ?>/uploads/products/<?= htmlspecialchars($product['main_photo']) ?>" 
                                              alt="<?= htmlspecialchars($product['name']) ?>" 
                                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                                     <?php else: ?>
@@ -167,7 +167,7 @@
                                         <?= htmlspecialchars($product['description'] ?? 'Sin descripción') ?>
                                     </p>
                                     
-                                    <a href="/admin/business/products/view/<?= $product['id'] ?>" 
+                                    <a href="<?= BASE_URL ?>/admin/business/products/view/<?= $product['id'] ?>" 
                                        class="flex items-center justify-center space-x-2 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
                                         <i class="fas fa-eye"></i>
                                         <span>Ver Detalles</span>

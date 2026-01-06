@@ -59,7 +59,7 @@
                     <!-- View All Users Button -->
                     <div class="hidden sm:flex items-center space-x-2 px-3 py-1.5 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">
                         <i class="fas fa-shield-halved text-sm"></i>
-                        <a href="/admin/users" class="text-blue-400 hover:text-blue-300 text-sm font-medium"><?php _e('admin.dashboard.view_all_users'); ?></a>
+                        <a href="<?= BASE_URL ?>/admin/users" class="text-blue-400 hover:text-blue-300 text-sm font-medium"><?php _e('admin.dashboard.view_all_users'); ?></a>
                     </div>
                 </div>
             </div>
